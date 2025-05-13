@@ -568,13 +568,14 @@ def get_person_id_by_username(username, role):
         return None
 
 # Custom styling
+# Custom styling
 def apply_custom_styles():
     st.markdown("""
     <style>
     /* Global Styles */
     .main {
-        background-color: #f5f5f5;
-        padding: 1.5rem;
+        background-color: #e6f4ff;
+        padding: 1rem;
     }
     
     .stApp {
@@ -583,315 +584,464 @@ def apply_custom_styles():
     
     /* Header Styles */
     .main-header {
-        font-size: 38px;
+        font-size: 2rem;
         font-weight: bold;
-        color: #4B0082;
+        color: #0077b6;
         text-align: center;
-        margin-bottom: 30px;
-        padding-bottom: 15px;
-        border-bottom: 3px solid #4B0082;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 3px solid #0077b6;
         text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
     
     .section-header {
-        font-size: 26px;
+        font-size: 1.5rem;
         font-weight: bold;
-        color: #4B0082;
-        margin-top: 25px;
-        margin-bottom: 15px;
-        padding-left: 10px;
-        border-left: 5px solid #4B0082;
+        color: #0077b6;
+        margin-top: 1.25rem;
+        margin-bottom: 0.75rem;
+        padding-left: 0.5rem;
+        border-left: 5px solid #0077b6;
     }
     
     /* Card Styles */
     .card {
         background-color: white;
-        border-radius: 12px;
-        padding: 20px;
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
+        border-radius: 0.75rem;
+        padding: 1rem;
+        box-shadow: 0 0.375rem 1rem rgba(0, 0, 0, 0.1);
+        margin-bottom: 1rem;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border-top: 4px solid #4B0082;
+        border-top: 4px solid #0077b6;
     }
     
     .card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.15);
     }
     
     /* Stat Box Styles */
     .stat-box {
-        background-color: #f8f4ff;
-        border-left: 5px solid #4B0082;
-        padding: 15px;
-        margin-bottom: 15px;
-        border-radius: 0 8px 8px 0;
+        background-color: #e6f4ff;
+        border-left: 5px solid #0077b6;
+        padding: 0.75rem;
+        margin-bottom: 0.75rem;
+        border-radius: 0 0.5rem 0.5rem 0;
         transition: background-color 0.3s ease;
     }
     
     .stat-box:hover {
-        background-color: #f0e6ff;
+        background-color: #cce6ff;
     }
     
     .highlight {
-        color: #4B0082;
+        color: #0077b6;
         font-weight: bold;
-        font-size: 28px;
+        font-size: 1.75rem;
     }
     
     /* Tab Styles */
     .stTabs [data-baseweb="tab-list"] {
-        gap: 24px;
-        background-color: #f8f4ff;
-        padding: 10px;
-        border-radius: 10px 10px 0 0;
+        gap: 1.5rem;
+        background-color: #e6f4ff;
+        padding: 0.5rem;
+        border-radius: 0.625rem 0.625rem 0 0;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        white-space: nowrap;
     }
     
     .stTabs [data-baseweb="tab"] {
-        height: 50px;
+        height: 3rem;
         white-space: pre-wrap;
-        background-color: #F3F4F6;
-        border-radius: 8px 8px 0px 0px;
-        padding: 10px 20px;
+        background-color: #e6f4ff;
+        border-radius: 0.5rem 0.5rem 0 0;
+        padding: 0.5rem 1rem;
         font-weight: 500;
         transition: all 0.2s ease;
         border: none;
+        min-width: fit-content;
     }
     
     .stTabs [aria-selected="true"] {
-        background-color: #4B0082;
+        background-color: #0077b6;
         color: white;
-        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 -0.25rem 0.625rem rgba(0, 0, 0, 0.1);
     }
     
     .stTabs [data-baseweb="tab"]:hover:not([aria-selected="true"]) {
-        background-color: #e6e0f0;
+        background-color: #b3d9ff;
     }
     
     .stTabs [data-baseweb="tab-panel"] {
         background-color: white;
-        border-radius: 0 0 10px 10px;
-        padding: 20px;
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+        border-radius: 0 0 0.625rem 0.625rem;
+        padding: 1rem;
+        box-shadow: 0 0.375rem 1rem rgba(0, 0, 0, 0.1);
     }
     
     /* Form Styles */
     .stButton>button {
-        background-color: #4B0082;
+        background-color: #0077b6;
         color: white;
-        border-radius: 8px;
-        padding: 10px 24px;
+        border-radius: 0.5rem;
+        padding: 0.5rem 1.5rem;
         font-weight: 500;
         border: none;
         transition: all 0.3s ease;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+        display: block;
     }
     
     .stButton>button:hover {
-        background-color: #5c0099;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        background-color: #023e8a;
+        box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
         transform: translateY(-2px);
     }
     
     .stTextInput>div>div>input, .stNumberInput>div>div>input, .stSelectbox>div>div>div {
-        border-radius: 8px;
-        border: 1px solid #d0d0d0;
-        padding: 10px 12px;
+        border-radius: 0.5rem;
+        border: 1px solid #90e0ef;
+        padding: 0.625rem 0.75rem;
+        font-size: 1rem;
     }
     
     .stTextInput>div>div>input:focus, .stNumberInput>div>div>input:focus {
-        border-color: #4B0082;
-        box-shadow: 0 0 0 2px rgba(75, 0, 130, 0.2);
+        border-color: #0077b6;
+        box-shadow: 0 0 0 2px rgba(0, 119, 182, 0.2);
     }
     
     /* Expander Styles */
     .streamlit-expanderHeader {
-        background-color: #f8f4ff;
-        border-radius: 8px;
-        padding: 10px 15px;
+        background-color: #e6f4ff;
+        border-radius: 0.5rem;
+        padding: 0.625rem 0.9375rem;
         font-weight: 500;
-        color: #4B0082;
-        border: 1px solid #e0d0ff;
+        color: #0077b6;
+        border: 1px solid #90e0ef;
     }
     
     .streamlit-expanderContent {
-        border: 1px solid #e0d0ff;
+        border: 1px solid #90e0ef;
         border-top: none;
-        border-radius: 0 0 8px 8px;
-        padding: 20px;
+        border-radius: 0 0 0.5rem 0.5rem;
+        padding: 1.25rem;
     }
     
     /* Table Styles */
     .stDataFrame {
-        border-radius: 10px;
+        border-radius: 0.625rem;
         overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.08);
+        width: 100%;
+        overflow-x: auto;
     }
     
     .stDataFrame table {
         border-collapse: separate;
         border-spacing: 0;
+        width: 100%;
     }
     
     .stDataFrame th {
-        background-color: #4B0082;
+        background-color: #0077b6;
         color: white;
-        padding: 12px 15px;
+        padding: 0.75rem 0.9375rem;
         font-weight: 500;
+        white-space: nowrap;
+        position: sticky;
+        top: 0;
+        z-index: 1;
     }
     
     .stDataFrame td {
-        padding: 10px 15px;
-        border-bottom: 1px solid #f0f0f0;
+        padding: 0.625rem 0.9375rem;
+        border-bottom: 1px solid #e6f4ff;
+        white-space: normal;
+        word-break: break-word;
     }
     
     .stDataFrame tr:nth-child(even) {
-        background-color: #f8f4ff;
+        background-color: #e6f4ff;
     }
     
     /* Sidebar Styles */
     .css-1d391kg, .css-12oz5g7 {
-        background-color: #f0e6ff;
+        background-color: #cce6ff;
     }
     
     .sidebar .sidebar-content {
-        background-color: #f0e6ff;
+        background-color: #cce6ff;
     }
     
     /* Alert and Info Styles */
     .stAlert {
-        border-radius: 8px;
-        padding: 15px;
-        margin-bottom: 20px;
+        border-radius: 0.5rem;
+        padding: 0.9375rem;
+        margin-bottom: 1.25rem;
     }
     
     .stAlert>div {
-        padding: 15px;
-        border-radius: 8px;
+        padding: 0.9375rem;
+        border-radius: 0.5rem;
     }
     
     /* Success Message */
     .element-container:has(div[data-testid="stText"] div[class*="success"]) {
         background-color: #e6ffea;
-        padding: 15px;
-        border-radius: 8px;
+        padding: 0.9375rem;
+        border-radius: 0.5rem;
         border-left: 5px solid #00cc66;
-        margin-bottom: 20px;
+        margin-bottom: 1.25rem;
     }
     
     /* Error Message */
     .element-container:has(div[data-testid="stText"] div[class*="error"]) {
         background-color: #ffe6e6;
-        padding: 15px;
-        border-radius: 8px;
+        padding: 0.9375rem;
+        border-radius: 0.5rem;
         border-left: 5px solid #ff3333;
-        margin-bottom: 20px;
+        margin-bottom: 1.25rem;
     }
     
     /* Info Message */
     .element-container:has(div[data-testid="stText"] div[class*="info"]) {
         background-color: #e6f2ff;
-        padding: 15px;
-        border-radius: 8px;
+        padding: 0.9375rem;
+        border-radius: 0.5rem;
         border-left: 5px solid #3399ff;
-        margin-bottom: 20px;
+        margin-bottom: 1.25rem;
     }
     
     /* Multiselect */
     .stMultiSelect>div>div>div {
         background-color: white;
-        border-radius: 8px;
+        border-radius: 0.5rem;
     }
     
     /* Checkbox */
     .stCheckbox>div>div>label {
-        color: #4B0082;
+        color: #0077b6;
     }
     
     /* Radio */
     .stRadio>div>div>label {
-        color: #4B0082;
+        color: #0077b6;
     }
     
     /* Slider */
     .stSlider>div>div>div>div {
-        background-color: #4B0082;
+        background-color: #0077b6;
     }
     
     /* Progress Bar */
     .stProgress>div>div>div>div {
-        background-color: #4B0082;
+        background-color: #0077b6;
     }
     
     /* Subheader */
     h3 {
-        color: #4B0082;
+        color: #0077b6;
         font-weight: 600;
-        margin-top: 20px;
-        margin-bottom: 10px;
+        margin-top: 1.25rem;
+        margin-bottom: 0.625rem;
     }
     
     /* Bold text */
     strong {
-        color: #4B0082;
+        color: #0077b6;
     }
 
     /* Chart Styles */
     .stChart > div > div > svg {
-        color: #4B0082 !important;
+        color: #0077b6 !important;
     }
     
     .stChart > div > div > svg g path.highcharts-point {
-        fill: #4B0082 !important;
+        fill: #0077b6 !important;
     }
     
     .stChart > div > div > svg g path.highcharts-graph {
-        stroke: #4B0082 !important;
+        stroke: #0077b6 !important;
     }
     
     .stChart > div > div > svg g rect.highcharts-point {
-        fill: #4B0082 !important;
+        fill: #0077b6 !important;
     }
     
     /* Streamlit's built-in charts */
     .element-container:has(div[data-testid="stChart"]) svg > g > rect {
-        fill: #4B0082 !important;
+        fill: #0077b6 !important;
     }
     
     /* Line charts */
     .element-container:has(div[data-testid="stChart"]) svg > g > path {
-        stroke: #4B0082 !important;
+        stroke: #0077b6 !important;
     }
     
     /* Altair charts */
     .element-container:has(div[data-testid="stChart"]) svg .mark-rect > path {
-        fill: #4B0082 !important;
+        fill: #0077b6 !important;
     }
     
     .element-container:has(div[data-testid="stChart"]) svg .mark-line > path {
-        stroke: #4B0082 !important;
+        stroke: #0077b6 !important;
     }
     
     /* Additional chart elements */
     .element-container:has(div[data-testid="stChart"]) svg g.tick text {
-        fill: 4B0082 !important;
+        fill: #333333 !important;
     }
     
     /* Bar chart specific */
     .element-container:has(div[data-testid="stChart"]) svg g > rect.rect {
-        fill: #4B0082 !important;
+        fill: #0077b6 !important;
     }
     
     /* For vega-lite charts */
     .element-container:has(div[data-testid="stVegaLiteChart"]) svg rect.mark-rect {
-        fill: #4B0082 !important;
+        fill: #0077b6 !important;
     }
     
     .element-container:has(div[data-testid="stVegaLiteChart"]) svg path.mark-line {
-        stroke: #4B0082 !important;
+        stroke: #0077b6 !important;
+    }
+    
+    /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+        .main {
+            padding: 0.5rem;
+            background-color: #e6f4ff;
+        }
+        
+        .main-header {
+            font-size: 1.5rem;
+            color: #0077b6;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #0077b6;
+        }
+        
+        .section-header {
+            font-size: 1.25rem;
+            color: #0077b6;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            border-left: 4px solid #0077b6;
+        }
+        
+        .card {
+            padding: 0.75rem;
+            margin-bottom: 0.75rem;
+            border-top: 3px solid #0077b6;
+        }
+        
+        .highlight {
+            font-size: 1.5rem;
+            color: #0077b6;
+        }
+        
+        .stTabs [data-baseweb="tab"] {
+            padding: 0.375rem 0.75rem;
+            height: 2.5rem;
+            font-size: 0.875rem;
+            background-color: #cce6ff;
+        }
+        
+        .stTabs [aria-selected="true"] {
+            background-color: #0077b6;
+        }
+        
+        .stTabs [data-baseweb="tab-panel"] {
+            padding: 0.75rem;
+        }
+        
+        .stButton>button {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            background-color: #0077b6;
+        }
+        
+        .stTextInput>div>div>input, 
+        .stNumberInput>div>div>input, 
+        .stSelectbox>div>div>div {
+            padding: 0.5rem;
+            font-size: 0.875rem;
+            border-color: #90e0ef;
+        }
+        
+        .stDataFrame th, 
+        .stDataFrame td {
+            padding: 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        h3 {
+            font-size: 1.25rem;
+            color: #0077b6;
+        }
+        
+        /* Form layout on mobile */
+        .stForm > div {
+            flex-direction: column;
+        }
+        
+        /* Columns stack on mobile */
+        .row-widget.stHorizontal {
+            flex-wrap: wrap;
+        }
+        
+        .row-widget.stHorizontal > div {
+            flex: 1 1 100%;
+            min-width: 100%;
+            margin-bottom: 0.75rem;
+        }
+        
+        /* Sidebar adjustment */
+        .css-1d391kg, .css-12oz5g7 {
+            width: 100% !important;
+            background-color: #cce6ff;
+        }
+    }
+    
+    /* Tablet Responsive Styles */
+    @media (min-width: 769px) and (max-width: 1024px) {
+        .main-header {
+            font-size: 1.75rem;
+        }
+        
+        .card {
+            padding: 0.875rem;
+        }
+        
+        .stTabs [data-baseweb="tab"] {
+            padding: 0.5rem 1rem;
+        }
+    }
+    
+    /* Touch targets on mobile */
+    @media (pointer: coarse) {
+        .stButton>button, 
+        .stSelectbox>div>div>div,
+        .stTextInput>div>div>input,
+        .stNumberInput>div>div>input,
+        .streamlit-expanderHeader {
+            min-height: 2.75rem;
+            background-color: #0077b6;
+            border-color: #90e0ef;
+        }
+        
+        .stCheckbox>div>div>label,
+        .stRadio>div>div>label {
+            padding: 0.5rem 0;
+            display: block;
+            color: #0077b6;
+        }
     }
     </style>
     """, unsafe_allow_html=True)
-
 # Apply custom styles
 apply_custom_styles()
 
@@ -1554,6 +1704,7 @@ def instructor_dashboard():
                     
                     with st.form("update_grades_form"):
                         student_options = {student["name"]: student["student_id"] for student in enrolled_students}
+                        selected_student = st.selectbox("Select Student", [student["name"] for student in enrolled_students])
                         selected_student = st.selectbox("Select Student", list(student_options.keys()))
                         student_id = student_options[selected_student]
                         
