@@ -594,293 +594,319 @@ def truncate_id_for_display(id_str, length=8):
 def apply_custom_styles():
     st.markdown("""
     <style>
-/* Global Styles */
-.main {
-    background-color: #f0e6ff;
-    padding: 1rem;
+/* Reset and base styles to ensure consistency */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 }
 
+/* Global Styles */
 .stApp {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #2e1a47;
+    background-color: #ffffff !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    color: #2e1a47 !important;
+}
+
+.main {
+    background-color: #ffffff !important;
+    padding: 1rem !important;
+}
+
+/* Override Streamlit's default styles */
+.css-18e3th9 {
+    background-color: #ffffff !important;
+}
+
+.css-1d391kg, .css-12oz5g7 {
+    background-color: #f0e6ff !important;
+}
+
+.css-1wrcr25 {
+    background-color: #ffffff !important;
 }
 
 /* Header Styles */
 .main-header {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #4B0082;
-    text-align: center;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 3px solid #4B0082;
-    text-shadow: 1px 1px 2px rgba(75, 0, 130, 0.1);
+    font-size: 2rem !important;
+    font-weight: bold !important;
+    color: #4B0082 !important;
+    text-align: center !important;
+    margin-bottom: 1.5rem !important;
+    padding-bottom: 0.75rem !important;
+    border-bottom: 3px solid #4B0082 !important;
+    text-shadow: 1px 1px 2px rgba(75, 0, 130, 0.1) !important;
+    background-color: #ffffff !important;
 }
 
 .section-header {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #4B0082;
-    margin-top: 1.25rem;
-    margin-bottom: 0.75rem;
-    padding-left: 0.5rem;
-    border-left: 5px solid #4B0082;
+    font-size: 1.5rem !important;
+    font-weight: bold !important;
+    color: #4B0082 !important;
+    margin-top: 1.25rem !important;
+    margin-bottom: 0.75rem !important;
+    padding-left: 0.5rem !important;
+    border-left: 5px solid #4B0082 !important;
+    background-color: #ffffff !important;
 }
 
 /* Card Styles */
 .card {
-    background-color: #ffffff;
-    border-radius: 0.75rem;
-    padding: 1rem;
-    box-shadow: 0 4px 8px rgba(75, 0, 130, 0.15);
-    margin-bottom: 1rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-top: 4px solid #4B0082;
+    background-color: #ffffff !important;
+    border-radius: 0.75rem !important;
+    padding: 1rem !important;
+    box-shadow: 0 4px 8px rgba(75, 0, 130, 0.15) !important;
+    margin-bottom: 1rem !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    border-top: 4px solid #4B0082 !important;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(75, 0, 130, 0.2);
+    transform: translateY(-5px) !important;
+    box-shadow: 0 6px 12px rgba(75, 0, 130, 0.2) !important;
 }
 
 /* Stat Box Styles */
 .stat-box {
-    background-color: #f8f4ff;
-    border-left: 5px solid #4B0082;
-    padding: 0.75rem;
-    margin-bottom: 0.75rem;
-    border-radius: 0 0.5rem 0.5rem 0;
-    transition: background-color 0.3s ease;
+    background-color: #f8f4ff !important;
+    border-left: 5px solid #4B0082 !important;
+    padding: 0.75rem !important;
+    margin-bottom: 0.75rem !important;
+    border-radius: 0 0.5rem 0.5rem 0 !important;
+    transition: background-color 0.3s ease !important;
 }
 
 .stat-box:hover {
-    background-color: #f0e6ff;
+    background-color: #f0e6ff !important;
 }
 
 .highlight {
-    color: #4B0082;
-    font-weight: bold;
-    font-size: 1.75rem;
+    color: #4B0082 !important;
+    font-weight: bold !important;
+    font-size: 1.75rem !important;
 }
 
 /* Tab Styles */
 .stTabs [data-baseweb="tab-list"] {
-    gap: 1.5rem;
-    background-color: #f8f4ff;
-    padding: 0.5rem;
-    border-radius: 0.625rem 0.625rem 0 0;
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    white-space: nowrap;
+    gap: 1.5rem !important;
+    background-color: #f8f4ff !important;
+    padding: 0.5rem !important;
+    border-radius: 0.625rem 0.625rem 0 0 !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    white-space: nowrap !important;
 }
 
 .stTabs [data-baseweb="tab"] {
-    height: 3rem;
-    white-space: pre-wrap;
-    background-color: #e6d9ff;
-    border-radius: 0.5rem 0.5rem 0 0;
-    padding: 0.5rem 1rem;
-    font-weight: 500;
-    transition: all 0.2s ease;
-    border: none;
-    min-width: fit-content;
-    color: #4B0082;
+    height: 3rem !important;
+    white-space: pre-wrap !important;
+    background-color: #e6d9ff !important;
+    border-radius: 0.5rem 0.5rem 0 0 !important;
+    padding: 0.5rem 1rem !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+    border: none !important;
+    min-width: fit-content !important;
+    color: #4B0082 !important;
 }
 
 .stTabs [aria-selected="true"] {
-    background-color: #4B0082;
+    background-color: #4B0082 !important;
     color: white !important;
-    box-shadow: 0 -0.25rem 0.625rem rgba(75, 0, 130, 0.1);
+    box-shadow: 0 -0.25rem 0.625rem rgba(75, 0, 130, 0.1) !important;
 }
 
 .stTabs [data-baseweb="tab"]:hover:not([aria-selected="true"]) {
-    background-color: #d9c2ff;
+    background-color: #d9c2ff !important;
 }
 
 .stTabs [data-baseweb="tab-panel"] {
-    background-color: white;
-    border-radius: 0 0 0.625rem 0.625rem;
-    padding: 1rem;
-    box-shadow: 0 0.375rem 1rem rgba(75, 0, 130, 0.1);
+    background-color: white !important;
+    border-radius: 0 0 0.625rem 0.625rem !important;
+    padding: 1rem !important;
+    box-shadow: 0 0.375rem 1rem rgba(75, 0, 130, 0.1) !important;
 }
 
 /* Form Styles */
 .stButton>button {
-    background-color: #4B0082;
+    background-color: #4B0082 !important;
     color: white !important;
-    border-radius: 0.5rem;
-    padding: 0.5rem 1.5rem;
-    font-weight: 500;
-    border: none;
-    transition: all 0.3s ease;
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
-    display: block;
+    border-radius: 0.5rem !important;
+    padding: 0.5rem 1.5rem !important;
+    font-weight: 500 !important;
+    border: none !important;
+    transition: all 0.3s ease !important;
+    width: 100% !important;
+    max-width: 300px !important;
+    margin: 0 auto !important;
+    display: block !important;
 }
 
 .stButton>button:hover {
-    background-color: #5c0099;
-    box-shadow: 0 0.25rem 0.5rem rgba(75, 0, 130, 0.2);
-    transform: translateY(-2px);
+    background-color: #5c0099 !important;
+    box-shadow: 0 0.25rem 0.5rem rgba(75, 0, 130, 0.2) !important;
+    transform: translateY(-2px) !important;
 }
 
 .stTextInput>div>div>input, .stNumberInput>div>div>input, .stSelectbox>div>div>div {
-    border-radius: 0.5rem;
-    border: 1px solid #d0c0e0;
-    padding: 0.625rem 0.75rem;
-    font-size: 1rem;
-    background-color: #ffffff;
-    color: #2e1a47;
+    border-radius: 0.5rem !important;
+    border: 1px solid #d0c0e0 !important;
+    padding: 0.625rem 0.75rem !important;
+    font-size: 1rem !important;
+    background-color: #ffffff !important;
+    color: #2e1a47 !important;
 }
 
 .stTextInput>div>div>input:focus, .stNumberInput>div>div>input:focus {
-    border-color: #4B0082;
-    box-shadow: 0 0 0 2px rgba(75, 0, 130, 0.2);
+    border-color: #4B0082 !important;
+    box-shadow: 0 0 0 2px rgba(75, 0, 130, 0.2) !important;
 }
 
 /* Expander Styles */
 .streamlit-expanderHeader {
-    background-color: #f8f4ff;
-    border-radius: 0.5rem;
-    padding: 0.625rem 0.9375rem;
-    font-weight: 500;
-    color: #4B0082;
-    border: 1px solid #e0d0ff;
+    background-color: #f8f4ff !important;
+    border-radius: 0.5rem !important;
+    padding: 0.625rem 0.9375rem !important;
+    font-weight: 500 !important;
+    color: #4B0082 !important;
+    border: 1px solid #e0d0ff !important;
 }
 
 .streamlit-expanderContent {
-    border: 1px solid #e0d0ff;
-    border-top: none;
-    border-radius: 0 0 0.5rem 0.5rem;
-    padding: 1.25rem;
-    background-color: #ffffff;
+    border: 1px solid #e0d0ff !important;
+    border-top: none !important;
+    border-radius: 0 0 0.5rem 0.5rem !important;
+    padding: 1.25rem !important;
+    background-color: #ffffff !important;
 }
 
 /* Table Styles */
 .stDataFrame {
-    border-radius: 0.625rem;
-    overflow: hidden;
-    box-shadow: 0 0.25rem 0.75rem rgba(75, 0, 130, 0.08);
-    width: 100%;
-    overflow-x: auto;
+    border-radius: 0.625rem !important;
+    overflow: hidden !important;
+    box-shadow: 0 0.25rem 0.75rem rgba(75, 0, 130, 0.08) !important;
+    width: 100% !important;
+    overflow-x: auto !important;
 }
 
 .stDataFrame table {
-    border-collapse: separate;
-    border-spacing: 0;
-    width: 100%;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    width: 100% !important;
 }
 
 .stDataFrame th {
-    background-color: #4B0082;
+    background-color: #4B0082 !important;
     color: white !important;
-    padding: 0.75rem 0.9375rem;
-    font-weight: 500;
-    white-space: nowrap;
-    position: sticky;
-    top: 0;
-    z-index: 1;
+    padding: 0.75rem 0.9375rem !important;
+    font-weight: 500 !important;
+    white-space: nowrap !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1 !important;
 }
 
 .stDataFrame td {
-    padding: 0.625rem 0.9375rem;
-    border-bottom: 1px solid #f0e6ff;
-    white-space: normal;
-    word-break: break-word;
-    color: #2e1a47;
-    background-color: #ffffff;
+    padding: 0.625rem 0.9375rem !important;
+    border-bottom: 1px solid #f0e6ff !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    color: #2e1a47 !important;
+    background-color: #ffffff !important;
 }
 
 .stDataFrame tr:nth-child(even) td {
-    background-color: #f8f4ff;
+    background-color: #f8f4ff !important;
 }
 
 /* Sidebar Styles */
 .css-1d391kg, .css-12oz5g7 {
-    background-color: #f0e6ff;
+    background-color: #f0e6ff !important;
 }
 
 .sidebar .sidebar-content {
-    background-color: #f0e6ff;
+    background-color: #f0e6ff !important;
 }
 
 /* Alert and Info Styles */
 .stAlert {
-    border-radius: 0.5rem;
-    padding: 0.9375rem;
-    margin-bottom: 1.25rem;
+    border-radius: 0.5rem !important;
+    padding: 0.9375rem !important;
+    margin-bottom: 1.25rem !important;
 }
 
 .stAlert>div {
-    padding: 0.9375rem;
-    border-radius: 0.5rem;
+    padding: 0.9375rem !important;
+    border-radius: 0.5rem !important;
 }
 
 /* Success Message */
 .element-container:has(div[data-testid="stText"] div[class*="success"]) {
-    background-color: #e6ffea;
-    padding: 0.9375rem;
-    border-radius: 0.5rem;
-    border-left: 5px solid #00cc66;
-    margin-bottom: 1.25rem;
+    background-color: #e6ffea !important;
+    padding: 0.9375rem !important;
+    border-radius: 0.5rem !important;
+    border-left: 5px solid #00cc66 !important;
+    margin-bottom: 1.25rem !important;
 }
 
 /* Error Message */
 .element-container:has(div[data-testid="stText"] div[class*="error"]) {
-    background-color: #ffe6e6;
-    padding: 0.9375rem;
-    border-radius: 0.5rem;
-    border-left: 5px solid #ff3333;
-    margin-bottom: 1.25rem;
+    background-color: #ffe6e6 !important;
+    padding: 0.9375rem !important;
+    border-radius: 0.5rem !important;
+    border-left: 5px solid #ff3333 !important;
+    margin-bottom: 1.25rem !important;
 }
 
 /* Info Message */
 .element-container:has(div[data-testid="stText"] div[class*="info"]) {
-    background-color: #e6f2ff;
-    padding: 0.9375rem;
-    border-radius: 0.5rem;
-    border-left: 5px solid #3399ff;
-    margin-bottom: 1.25rem;
+    background-color: #e6f2ff !important;
+    padding: 0.9375rem !important;
+    border-radius: 0.5rem !important;
+    border-left: 5px solid #3399ff !important;
+    margin-bottom: 1.25rem !important;
 }
 
 /* Multiselect */
 .stMultiSelect>div>div>div {
-    background-color: white;
-    border-radius: 0.5rem;
+    background-color: white !important;
+    border-radius: 0.5rem !important;
 }
 
 /* Checkbox */
 .stCheckbox>div>div>label {
-    color: #4B0082;
+    color: #4B0082 !important;
 }
 
 /* Radio */
 .stRadio>div>div>label {
-    color: #4B0082;
+    color: #4B0082 !important;
 }
 
 /* Slider */
 .stSlider>div>div>div>div {
-    background-color: #4B0082;
+    background-color: #4B0082 !important;
 }
 
 /* Progress Bar */
 .stProgress>div>div>div>div {
-    background-color: #4B0082;
+    background-color: #4B0082 !important;
 }
 
 /* Subheader */
 h3 {
-    color: #4B0082;
-    font-weight: 600;
-    margin-top: 1.25rem;
-    margin-bottom: 0.625rem;
+    color: #4B0082 !important;
+    font-weight: 600 !important;
+    margin-top: 1.25rem !important;
+    margin-bottom: 0.625rem !important;
 }
 
 /* Bold text */
 strong {
-    color: #4B0082;
+    color: #4B0082 !important;
 }
 
 /* Chart Styles */
@@ -941,150 +967,152 @@ strong {
 /* Mobile Responsive Styles - Enhanced for Android */
 @media (max-width: 768px) {
     .main {
-        padding: 0.5rem;
-        background-color: #f0e6ff;
+        padding: 0.5rem !important;
+        background-color: #ffffff !important;
     }
     
     .main-header {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-        padding-bottom: 0.5rem;
-        color: #4B0082;
+        font-size: 1.5rem !important;
+        margin-bottom: 1rem !important;
+        padding-bottom: 0.5rem !important;
+        color: #4B0082 !important;
+        background-color: #ffffff !important;
     }
     
     .section-header {
-        font-size: 1.25rem;
-        margin-top: 1rem;
-        margin-bottom: 0.5rem;
-        color: #4B0082;
+        font-size: 1.25rem !important;
+        margin-top: 1rem !important;
+        margin-bottom: 0.5rem !important;
+        color: #4B0082 !important;
+        background-color: #ffffff !important;
     }
     
     .card {
-        padding: 0.75rem;
-        margin-bottom: 0.75rem;
-        background-color: #ffffff;
-        box-shadow: 0 3px 6px rgba(75, 0, 130, 0.15);
+        padding: 0.75rem !important;
+        margin-bottom: 0.75rem !important;
+        background-color: #ffffff !important;
+        box-shadow: 0 3px 6px rgba(75, 0, 130, 0.15) !important;
     }
     
     .highlight {
-        font-size: 1.5rem;
-        color: #4B0082;
+        font-size: 1.5rem !important;
+        color: #4B0082 !important;
     }
     
     .stTabs [data-baseweb="tab"] {
-        padding: 0.375rem 0.75rem;
-        height: 2.5rem;
-        font-size: 0.875rem;
-        background-color: #e6d9ff;
-        color: #4B0082;
+        padding: 0.375rem 0.75rem !important;
+        height: 2.5rem !important;
+        font-size: 0.875rem !important;
+        background-color: #e6d9ff !important;
+        color: #4B0082 !important;
     }
     
     .stTabs [data-baseweb="tab-panel"] {
-        padding: 0.75rem;
-        background-color: #ffffff;
+        padding: 0.75rem !important;
+        background-color: #ffffff !important;
     }
     
     .stButton>button {
-        padding: 0.75rem 1rem;
-        font-size: 0.875rem;
-        background-color: #4B0082;
+        padding: 0.75rem 1rem !important;
+        font-size: 0.875rem !important;
+        background-color: #4B0082 !important;
         color: white !important;
     }
     
     .stTextInput>div>div>input, .stNumberInput>div>div>input, .stSelectbox>div>div>div {
-        padding: 0.5rem;
-        font-size: 0.875rem;
-        border-color: #d0c0e0;
-        background-color: #ffffff;
-        color: #2e1a47;
+        padding: 0.5rem !important;
+        font-size: 0.875rem !important;
+        border-color: #d0c0e0 !important;
+        background-color: #ffffff !important;
+        color: #2e1a47 !important;
     }
     
     .stDataFrame th, .stDataFrame td {
-        padding: 0.5rem;
-        font-size: 0.875rem;
+        padding: 0.5rem !important;
+        font-size: 0.875rem !important;
     }
     
     .stDataFrame th {
-        background-color: #4B0082;
+        background-color: #4B0082 !important;
         color: white !important;
     }
     
     .stDataFrame td {
-        color: #2e1a47;
-        background-color: #ffffff;
+        color: #2e1a47 !important;
+        background-color: #ffffff !important;
     }
     
     .stDataFrame tr:nth-child(even) td {
-        background-color: #f8f4ff;
+        background-color: #f8f4ff !important;
     }
     
     h3 {
-        font-size: 1.25rem;
-        color: #4B0082;
+        font-size: 1.25rem !important;
+        color: #4B0082 !important;
     }
     
     /* Improve form layout on mobile */
     .stForm > div {
-        flex-direction: column;
+        flex-direction: column !important;
     }
     
     /* Make columns stack on mobile */
     .row-widget.stHorizontal {
-        flex-wrap: wrap;
+        flex-wrap: wrap !important;
     }
     
     .row-widget.stHorizontal > div {
-        flex: 1 1 100%;
-        min-width: 100%;
-        margin-bottom: 0.75rem;
+        flex: 1 1 100% !important;
+        min-width: 100% !important;
+        margin-bottom: 0.75rem !important;
     }
     
     /* Adjust sidebar for mobile */
     .css-1d391kg, .css-12oz5g7 {
         width: 100% !important;
-        background-color: #f0e6ff;
+        background-color: #f0e6ff !important;
     }
     
     /* Improve table display on mobile */
     .stDataFrame {
-        font-size: 0.75rem;
+        font-size: 0.75rem !important;
     }
     
     .stDataFrame table {
-        table-layout: fixed;
+        table-layout: fixed !important;
     }
     
     /* Hide or truncate long IDs on mobile */
     .stDataFrame td:nth-child(1) {
-        max-width: 80px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        max-width: 80px !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
     }
     
     /* Make sure buttons are properly sized on mobile */
     .stButton>button {
-        width: 100%;
-        max-width: none;
-        padding: 0.75rem 0.5rem;
-        margin-top: 0.5rem;
-        margin-bottom: 0.5rem;
+        width: 100% !important;
+        max-width: none !important;
+        padding: 0.75rem 0.5rem !important;
+        margin-top: 0.5rem !important;
+        margin-bottom: 0.5rem !important;
     }
     
     /* Improve form layout on small screens */
     .stForm {
-        padding: 0.5rem;
+        padding: 0.5rem !important;
     }
     
     /* Adjust card padding for mobile */
     .card {
-        padding: 0.75rem;
+        padding: 0.75rem !important;
     }
     
     /* Make tabs more touch-friendly */
     .stTabs [data-baseweb="tab"] {
-        min-width: 80px;
-        padding: 0.5rem;
+        min-width: 80px !important;
+        padding: 0.5rem !important;
     }
     
     /* Improve sidebar on mobile */
@@ -1096,17 +1124,17 @@ strong {
 /* Tablet Responsive Styles */
 @media (min-width: 769px) and (max-width: 1024px) {
     .main-header {
-        font-size: 1.75rem;
+        font-size: 1.75rem !important;
     }
     
     .card {
-        padding: 0.875rem;
-        background-color: #ffffff;
+        padding: 0.875rem !important;
+        background-color: #ffffff !important;
     }
     
     .stTabs [data-baseweb="tab"] {
-        padding: 0.5rem 1rem;
-        background-color: #e6d9ff;
+        padding: 0.5rem 1rem !important;
+        background-color: #e6d9ff !important;
     }
 }
 
@@ -1117,13 +1145,13 @@ strong {
     .stTextInput>div>div>input,
     .stNumberInput>div>div>input,
     .streamlit-expanderHeader {
-        min-height: 2.75rem;
+        min-height: 2.75rem !important;
     }
     
     .stCheckbox>div>div>label,
     .stRadio>div>div>label {
-        padding: 0.5rem 0;
-        display: block;
+        padding: 0.5rem 0 !important;
+        display: block !important;
     }
 }
 
@@ -1147,7 +1175,7 @@ strong {
     
     /* Fix for Android text rendering */
     body, input, button, select, textarea {
-        -webkit-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100% !important;
     }
     
     /* Improve contrast for Android */
@@ -1168,25 +1196,25 @@ strong {
 /* Small screen Android phones */
 @media screen and (max-width: 360px) {
     .main-header {
-        font-size: 1.25rem;
+        font-size: 1.25rem !important;
     }
     
     .section-header {
-        font-size: 1.1rem;
+        font-size: 1.1rem !important;
     }
     
     .card {
-        padding: 0.5rem;
+        padding: 0.5rem !important;
     }
     
     .stDataFrame th, .stDataFrame td {
-        padding: 0.25rem;
-        font-size: 0.7rem;
+        padding: 0.25rem !important;
+        font-size: 0.7rem !important;
     }
     
     .stButton>button {
-        padding: 0.5rem;
-        font-size: 0.8rem;
+        padding: 0.5rem !important;
+        font-size: 0.8rem !important;
     }
 }
 
@@ -1216,7 +1244,7 @@ strong {
 
 /* Ensure backgrounds are properly set */
 .main {
-    background-color: #f0e6ff !important;
+    background-color: #ffffff !important;
 }
 
 .card, .streamlit-expanderContent, .stDataFrame td {
@@ -1225,6 +1253,91 @@ strong {
 
 .stDataFrame tr:nth-child(even) td {
     background-color: #f8f4ff !important;
+}
+
+/* Override Streamlit's default dark mode */
+@media (prefers-color-scheme: dark) {
+    .stApp, .main, .css-18e3th9, .css-1wrcr25 {
+        background-color: #ffffff !important;
+    }
+    
+    .stDataFrame td {
+        background-color: #ffffff !important;
+    }
+    
+    .stDataFrame tr:nth-child(even) td {
+        background-color: #f8f4ff !important;
+    }
+    
+    .card, .streamlit-expanderContent {
+        background-color: #ffffff !important;
+    }
+    
+    .stTextInput>div>div>input, .stNumberInput>div>div>input, .stSelectbox>div>div>div {
+        background-color: #ffffff !important;
+        color: #2e1a47 !important;
+    }
+}
+
+/* Fix for Streamlit's container backgrounds */
+.block-container {
+    background-color: #ffffff !important;
+}
+
+.css-1544g2n {
+    background-color: #ffffff !important;
+}
+
+.css-k1vhr4 {
+    background-color: #f0e6ff !important;
+}
+
+.css-1avcm0n {
+    background-color: #ffffff !important;
+}
+
+/* Fix for Streamlit's dark mode toggle */
+[data-testid="stAppViewContainer"] {
+    background-color: #ffffff !important;
+}
+
+[data-testid="stHeader"] {
+    background-color: #ffffff !important;
+}
+
+[data-testid="stToolbar"] {
+    background-color: #ffffff !important;
+}
+
+[data-testid="stSidebar"] {
+    background-color: #f0e6ff !important;
+}
+
+/* Additional fixes for mobile */
+@media (max-width: 768px) {
+    [data-testid="stAppViewContainer"] {
+        background-color: #ffffff !important;
+    }
+    
+    [data-testid="stHeader"] {
+        background-color: #ffffff !important;
+    }
+    
+    [data-testid="stToolbar"] {
+        background-color: #ffffff !important;
+    }
+    
+    [data-testid="stSidebar"] {
+        background-color: #f0e6ff !important;
+    }
+    
+    .block-container {
+        background-color: #ffffff !important;
+    }
+    
+    .css-1544g2n {
+        background-color: #ffffff !important;
+    }
 }
 </style>
     """, unsafe_allow_html=True)
@@ -1418,14 +1531,14 @@ def admin_dashboard():
 <style>
 @media (max-width: 768px) {
     .main-header {
-        font-size: 1.25rem;
+        font-size: 1.25rem !important;
     }
     
     /* Hide ID columns on very small screens */
     @media (max-width: 480px) {
         .stDataFrame [data-testid="column_header"]:first-child,
         .stDataFrame [data-testid="cell"]:first-child {
-            display: none;
+            display: none !important;
         }
     }
 }
