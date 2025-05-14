@@ -1,4 +1,3 @@
-
 import streamlit as st # type: ignore
 import pandas as pd # type: ignore
 import uuid
@@ -597,12 +596,13 @@ def apply_custom_styles():
     <style>
 /* Global Styles */
 .main {
-    background-color: #f8f5ff;
+    background-color: #f0e6ff;
     padding: 1rem;
 }
 
 .stApp {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2e1a47;
 }
 
 /* Header Styles */
@@ -629,10 +629,10 @@ def apply_custom_styles():
 
 /* Card Styles */
 .card {
-    background-color: white;
+    background-color: #ffffff;
     border-radius: 0.75rem;
     padding: 1rem;
-    box-shadow: 0 0.375rem 1rem rgba(75, 0, 130, 0.1);
+    box-shadow: 0 4px 8px rgba(75, 0, 130, 0.15);
     margin-bottom: 1rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border-top: 4px solid #4B0082;
@@ -640,7 +640,7 @@ def apply_custom_styles():
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 0.625rem 1.25rem rgba(75, 0, 130, 0.15);
+    box-shadow: 0 6px 12px rgba(75, 0, 130, 0.2);
 }
 
 /* Stat Box Styles */
@@ -677,23 +677,24 @@ def apply_custom_styles():
 .stTabs [data-baseweb="tab"] {
     height: 3rem;
     white-space: pre-wrap;
-    background-color: #f3eeff;
+    background-color: #e6d9ff;
     border-radius: 0.5rem 0.5rem 0 0;
     padding: 0.5rem 1rem;
     font-weight: 500;
     transition: all 0.2s ease;
     border: none;
     min-width: fit-content;
+    color: #4B0082;
 }
 
 .stTabs [aria-selected="true"] {
     background-color: #4B0082;
-    color: white;
+    color: white !important;
     box-shadow: 0 -0.25rem 0.625rem rgba(75, 0, 130, 0.1);
 }
 
 .stTabs [data-baseweb="tab"]:hover:not([aria-selected="true"]) {
-    background-color: #e6e0f0;
+    background-color: #d9c2ff;
 }
 
 .stTabs [data-baseweb="tab-panel"] {
@@ -706,7 +707,7 @@ def apply_custom_styles():
 /* Form Styles */
 .stButton>button {
     background-color: #4B0082;
-    color: white;
+    color: white !important;
     border-radius: 0.5rem;
     padding: 0.5rem 1.5rem;
     font-weight: 500;
@@ -729,6 +730,8 @@ def apply_custom_styles():
     border: 1px solid #d0c0e0;
     padding: 0.625rem 0.75rem;
     font-size: 1rem;
+    background-color: #ffffff;
+    color: #2e1a47;
 }
 
 .stTextInput>div>div>input:focus, .stNumberInput>div>div>input:focus {
@@ -751,6 +754,7 @@ def apply_custom_styles():
     border-top: none;
     border-radius: 0 0 0.5rem 0.5rem;
     padding: 1.25rem;
+    background-color: #ffffff;
 }
 
 /* Table Styles */
@@ -770,7 +774,7 @@ def apply_custom_styles():
 
 .stDataFrame th {
     background-color: #4B0082;
-    color: white;
+    color: white !important;
     padding: 0.75rem 0.9375rem;
     font-weight: 500;
     white-space: nowrap;
@@ -784,10 +788,11 @@ def apply_custom_styles():
     border-bottom: 1px solid #f0e6ff;
     white-space: normal;
     word-break: break-word;
-    color: #3a2f45;
+    color: #2e1a47;
+    background-color: #ffffff;
 }
 
-.stDataFrame tr:nth-child(even) {
+.stDataFrame tr:nth-child(even) td {
     background-color: #f8f4ff;
 }
 
@@ -916,7 +921,7 @@ strong {
 
 /* Additional chart elements */
 .element-container:has(div[data-testid="stChart"]) svg g.tick text {
-    fill: #3a2f45 !important;
+    fill: #2e1a47 !important;
 }
 
 /* Bar chart specific */
@@ -933,40 +938,45 @@ strong {
     stroke: #4B0082 !important;
 }
 
-/* Mobile Responsive Styles */
+/* Mobile Responsive Styles - Enhanced for Android */
 @media (max-width: 768px) {
     .main {
         padding: 0.5rem;
-        background-color: #f8f5ff;
+        background-color: #f0e6ff;
     }
     
     .main-header {
         font-size: 1.5rem;
         margin-bottom: 1rem;
         padding-bottom: 0.5rem;
+        color: #4B0082;
     }
     
     .section-header {
         font-size: 1.25rem;
         margin-top: 1rem;
         margin-bottom: 0.5rem;
+        color: #4B0082;
     }
     
     .card {
         padding: 0.75rem;
         margin-bottom: 0.75rem;
         background-color: #ffffff;
+        box-shadow: 0 3px 6px rgba(75, 0, 130, 0.15);
     }
     
     .highlight {
         font-size: 1.5rem;
+        color: #4B0082;
     }
     
     .stTabs [data-baseweb="tab"] {
         padding: 0.375rem 0.75rem;
         height: 2.5rem;
         font-size: 0.875rem;
-        background-color: #f3eeff;
+        background-color: #e6d9ff;
+        color: #4B0082;
     }
     
     .stTabs [data-baseweb="tab-panel"] {
@@ -975,14 +985,18 @@ strong {
     }
     
     .stButton>button {
-        padding: 0.5rem 1rem;
+        padding: 0.75rem 1rem;
         font-size: 0.875rem;
+        background-color: #4B0082;
+        color: white !important;
     }
     
     .stTextInput>div>div>input, .stNumberInput>div>div>input, .stSelectbox>div>div>div {
         padding: 0.5rem;
         font-size: 0.875rem;
         border-color: #d0c0e0;
+        background-color: #ffffff;
+        color: #2e1a47;
     }
     
     .stDataFrame th, .stDataFrame td {
@@ -990,8 +1004,18 @@ strong {
         font-size: 0.875rem;
     }
     
+    .stDataFrame th {
+        background-color: #4B0082;
+        color: white !important;
+    }
+    
     .stDataFrame td {
-        color: #3a2f45;
+        color: #2e1a47;
+        background-color: #ffffff;
+    }
+    
+    .stDataFrame tr:nth-child(even) td {
+        background-color: #f8f4ff;
     }
     
     h3 {
@@ -1020,44 +1044,7 @@ strong {
         width: 100% !important;
         background-color: #f0e6ff;
     }
-}
-
-/* Tablet Responsive Styles */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .main-header {
-        font-size: 1.75rem;
-    }
     
-    .card {
-        padding: 0.875rem;
-        background-color: #ffffff;
-    }
-    
-    .stTabs [data-baseweb="tab"] {
-        padding: 0.5rem 1rem;
-        background-color: #f3eeff;
-    }
-}
-
-/* Improve touch targets on mobile */
-@media (pointer: coarse) {
-    .stButton>button, 
-    .stSelectbox>div>div>div,
-    .stTextInput>div>div>input,
-    .stNumberInput>div>div>input,
-    .streamlit-expanderHeader {
-        min-height: 2.75rem;
-    }
-    
-    .stCheckbox>div>div>label,
-    .stRadio>div>div>label {
-        padding: 0.5rem 0;
-        display: block;
-    }
-}
-
-/* Additional Mobile Optimizations */
-@media (max-width: 768px) {
     /* Improve table display on mobile */
     .stDataFrame {
         font-size: 0.75rem;
@@ -1080,6 +1067,8 @@ strong {
         width: 100%;
         max-width: none;
         padding: 0.75rem 0.5rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
     }
     
     /* Improve form layout on small screens */
@@ -1089,7 +1078,7 @@ strong {
     
     /* Adjust card padding for mobile */
     .card {
-        padding: 0.5rem;
+        padding: 0.75rem;
     }
     
     /* Make tabs more touch-friendly */
@@ -1102,6 +1091,140 @@ strong {
     .css-1d391kg, .css-12oz5g7 {
         padding: 1rem 0.5rem !important;
     }
+}
+
+/* Tablet Responsive Styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .main-header {
+        font-size: 1.75rem;
+    }
+    
+    .card {
+        padding: 0.875rem;
+        background-color: #ffffff;
+    }
+    
+    .stTabs [data-baseweb="tab"] {
+        padding: 0.5rem 1rem;
+        background-color: #e6d9ff;
+    }
+}
+
+/* Improve touch targets on mobile */
+@media (pointer: coarse) {
+    .stButton>button, 
+    .stSelectbox>div>div>div,
+    .stTextInput>div>div>input,
+    .stNumberInput>div>div>input,
+    .streamlit-expanderHeader {
+        min-height: 2.75rem;
+    }
+    
+    .stCheckbox>div>div>label,
+    .stRadio>div>div>label {
+        padding: 0.5rem 0;
+        display: block;
+    }
+}
+
+/* Android-specific optimizations */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    /* Android Chrome specific styles */
+    .stButton>button {
+        background-color: #4B0082 !important;
+        color: #ffffff !important;
+    }
+    
+    .stTabs [aria-selected="true"] {
+        background-color: #4B0082 !important;
+        color: #ffffff !important;
+    }
+    
+    .stDataFrame th {
+        background-color: #4B0082 !important;
+        color: #ffffff !important;
+    }
+    
+    /* Fix for Android text rendering */
+    body, input, button, select, textarea {
+        -webkit-text-size-adjust: 100%;
+    }
+    
+    /* Improve contrast for Android */
+    .card, .stDataFrame td, .streamlit-expanderContent {
+        background-color: #ffffff !important;
+    }
+    
+    .stDataFrame tr:nth-child(even) td {
+        background-color: #f8f4ff !important;
+    }
+    
+    /* Fix for Android shadow rendering */
+    .card {
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
+    }
+}
+
+/* Small screen Android phones */
+@media screen and (max-width: 360px) {
+    .main-header {
+        font-size: 1.25rem;
+    }
+    
+    .section-header {
+        font-size: 1.1rem;
+    }
+    
+    .card {
+        padding: 0.5rem;
+    }
+    
+    .stDataFrame th, .stDataFrame td {
+        padding: 0.25rem;
+        font-size: 0.7rem;
+    }
+    
+    .stButton>button {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Force color application for problematic browsers */
+.stTabs [data-baseweb="tab"] {
+    color: #4B0082 !important;
+}
+
+.stTabs [aria-selected="true"] {
+    color: #ffffff !important;
+}
+
+.stButton>button {
+    color: #ffffff !important;
+    background-color: #4B0082 !important;
+}
+
+.stDataFrame th {
+    color: #ffffff !important;
+    background-color: #4B0082 !important;
+}
+
+/* Ensure text is visible on all backgrounds */
+.stDataFrame td, .stTextInput>div>div>input, .stNumberInput>div>div>input, .stSelectbox>div>div>div {
+    color: #2e1a47 !important;
+}
+
+/* Ensure backgrounds are properly set */
+.main {
+    background-color: #f0e6ff !important;
+}
+
+.card, .streamlit-expanderContent, .stDataFrame td {
+    background-color: #ffffff !important;
+}
+
+.stDataFrame tr:nth-child(even) td {
+    background-color: #f8f4ff !important;
 }
 </style>
     """, unsafe_allow_html=True)
