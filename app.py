@@ -595,501 +595,515 @@ def truncate_id_for_display(id_str, length=8):
 def apply_custom_styles():
     st.markdown("""
     <style>
-    /* Global Styles */
+/* Global Styles */
+.main {
+    background-color: #f8f5ff;
+    padding: 1rem;
+}
+
+.stApp {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header Styles */
+.main-header {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4B0082;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 3px solid #4B0082;
+    text-shadow: 1px 1px 2px rgba(75, 0, 130, 0.1);
+}
+
+.section-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4B0082;
+    margin-top: 1.25rem;
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+    border-left: 5px solid #4B0082;
+}
+
+/* Card Styles */
+.card {
+    background-color: white;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    box-shadow: 0 0.375rem 1rem rgba(75, 0, 130, 0.1);
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 4px solid #4B0082;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.625rem 1.25rem rgba(75, 0, 130, 0.15);
+}
+
+/* Stat Box Styles */
+.stat-box {
+    background-color: #f8f4ff;
+    border-left: 5px solid #4B0082;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+    transition: background-color 0.3s ease;
+}
+
+.stat-box:hover {
+    background-color: #f0e6ff;
+}
+
+.highlight {
+    color: #4B0082;
+    font-weight: bold;
+    font-size: 1.75rem;
+}
+
+/* Tab Styles */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 1.5rem;
+    background-color: #f8f4ff;
+    padding: 0.5rem;
+    border-radius: 0.625rem 0.625rem 0 0;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+.stTabs [data-baseweb="tab"] {
+    height: 3rem;
+    white-space: pre-wrap;
+    background-color: #f3eeff;
+    border-radius: 0.5rem 0.5rem 0 0;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: none;
+    min-width: fit-content;
+}
+
+.stTabs [aria-selected="true"] {
+    background-color: #4B0082;
+    color: white;
+    box-shadow: 0 -0.25rem 0.625rem rgba(75, 0, 130, 0.1);
+}
+
+.stTabs [data-baseweb="tab"]:hover:not([aria-selected="true"]) {
+    background-color: #e6e0f0;
+}
+
+.stTabs [data-baseweb="tab-panel"] {
+    background-color: white;
+    border-radius: 0 0 0.625rem 0.625rem;
+    padding: 1rem;
+    box-shadow: 0 0.375rem 1rem rgba(75, 0, 130, 0.1);
+}
+
+/* Form Styles */
+.stButton>button {
+    background-color: #4B0082;
+    color: white;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+    border: none;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    display: block;
+}
+
+.stButton>button:hover {
+    background-color: #5c0099;
+    box-shadow: 0 0.25rem 0.5rem rgba(75, 0, 130, 0.2);
+    transform: translateY(-2px);
+}
+
+.stTextInput>div>div>input, .stNumberInput>div>div>input, .stSelectbox>div>div>div {
+    border-radius: 0.5rem;
+    border: 1px solid #d0c0e0;
+    padding: 0.625rem 0.75rem;
+    font-size: 1rem;
+}
+
+.stTextInput>div>div>input:focus, .stNumberInput>div>div>input:focus {
+    border-color: #4B0082;
+    box-shadow: 0 0 0 2px rgba(75, 0, 130, 0.2);
+}
+
+/* Expander Styles */
+.streamlit-expanderHeader {
+    background-color: #f8f4ff;
+    border-radius: 0.5rem;
+    padding: 0.625rem 0.9375rem;
+    font-weight: 500;
+    color: #4B0082;
+    border: 1px solid #e0d0ff;
+}
+
+.streamlit-expanderContent {
+    border: 1px solid #e0d0ff;
+    border-top: none;
+    border-radius: 0 0 0.5rem 0.5rem;
+    padding: 1.25rem;
+}
+
+/* Table Styles */
+.stDataFrame {
+    border-radius: 0.625rem;
+    overflow: hidden;
+    box-shadow: 0 0.25rem 0.75rem rgba(75, 0, 130, 0.08);
+    width: 100%;
+    overflow-x: auto;
+}
+
+.stDataFrame table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+}
+
+.stDataFrame th {
+    background-color: #4B0082;
+    color: white;
+    padding: 0.75rem 0.9375rem;
+    font-weight: 500;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.stDataFrame td {
+    padding: 0.625rem 0.9375rem;
+    border-bottom: 1px solid #f0e6ff;
+    white-space: normal;
+    word-break: break-word;
+    color: #3a2f45;
+}
+
+.stDataFrame tr:nth-child(even) {
+    background-color: #f8f4ff;
+}
+
+/* Sidebar Styles */
+.css-1d391kg, .css-12oz5g7 {
+    background-color: #f0e6ff;
+}
+
+.sidebar .sidebar-content {
+    background-color: #f0e6ff;
+}
+
+/* Alert and Info Styles */
+.stAlert {
+    border-radius: 0.5rem;
+    padding: 0.9375rem;
+    margin-bottom: 1.25rem;
+}
+
+.stAlert>div {
+    padding: 0.9375rem;
+    border-radius: 0.5rem;
+}
+
+/* Success Message */
+.element-container:has(div[data-testid="stText"] div[class*="success"]) {
+    background-color: #e6ffea;
+    padding: 0.9375rem;
+    border-radius: 0.5rem;
+    border-left: 5px solid #00cc66;
+    margin-bottom: 1.25rem;
+}
+
+/* Error Message */
+.element-container:has(div[data-testid="stText"] div[class*="error"]) {
+    background-color: #ffe6e6;
+    padding: 0.9375rem;
+    border-radius: 0.5rem;
+    border-left: 5px solid #ff3333;
+    margin-bottom: 1.25rem;
+}
+
+/* Info Message */
+.element-container:has(div[data-testid="stText"] div[class*="info"]) {
+    background-color: #e6f2ff;
+    padding: 0.9375rem;
+    border-radius: 0.5rem;
+    border-left: 5px solid #3399ff;
+    margin-bottom: 1.25rem;
+}
+
+/* Multiselect */
+.stMultiSelect>div>div>div {
+    background-color: white;
+    border-radius: 0.5rem;
+}
+
+/* Checkbox */
+.stCheckbox>div>div>label {
+    color: #4B0082;
+}
+
+/* Radio */
+.stRadio>div>div>label {
+    color: #4B0082;
+}
+
+/* Slider */
+.stSlider>div>div>div>div {
+    background-color: #4B0082;
+}
+
+/* Progress Bar */
+.stProgress>div>div>div>div {
+    background-color: #4B0082;
+}
+
+/* Subheader */
+h3 {
+    color: #4B0082;
+    font-weight: 600;
+    margin-top: 1.25rem;
+    margin-bottom: 0.625rem;
+}
+
+/* Bold text */
+strong {
+    color: #4B0082;
+}
+
+/* Chart Styles */
+.stChart > div > div > svg {
+    color: #4B0082 !important;
+}
+
+.stChart > div > div > svg g path.highcharts-point {
+    fill: #4B0082 !important;
+}
+
+.stChart > div > div > svg g path.highcharts-graph {
+    stroke: #4B0082 !important;
+}
+
+.stChart > div > div > svg g rect.highcharts-point {
+    fill: #4B0082 !important;
+}
+
+/* Streamlit's built-in charts */
+.element-container:has(div[data-testid="stChart"]) svg > g > rect {
+    fill: #4B0082 !important;
+}
+
+/* Line charts */
+.element-container:has(div[data-testid="stChart"]) svg > g > path {
+    stroke: #4B0082 !important;
+}
+
+/* Altair charts */
+.element-container:has(div[data-testid="stChart"]) svg .mark-rect > path {
+    fill: #4B0082 !important;
+}
+
+.element-container:has(div[data-testid="stChart"]) svg .mark-line > path {
+    stroke: #4B0082 !important;
+}
+
+/* Additional chart elements */
+.element-container:has(div[data-testid="stChart"]) svg g.tick text {
+    fill: #3a2f45 !important;
+}
+
+/* Bar chart specific */
+.element-container:has(div[data-testid="stChart"]) svg g > rect.rect {
+    fill: #4B0082 !important;
+}
+
+/* For vega-lite charts */
+.element-container:has(div[data-testid="stVegaLiteChart"]) svg rect.mark-rect {
+    fill: #4B0082 !important;
+}
+
+.element-container:has(div[data-testid="stVegaLiteChart"]) svg path.mark-line {
+    stroke: #4B0082 !important;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
     .main {
-        background-color: #f5f5f5;
-        padding: 1rem;
+        padding: 0.5rem;
+        background-color: #f8f5ff;
     }
     
-    .stApp {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    
-    /* Header Styles */
     .main-header {
-        font-size: 2rem;
-        font-weight: bold;
-        color: #4B0082;
-        text-align: center;
-        margin-bottom: 1.5rem;
-        padding-bottom: 0.75rem;
-        border-bottom: 3px solid #4B0082;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
     }
     
     .section-header {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #4B0082;
-        margin-top: 1.25rem;
-        margin-bottom: 0.75rem;
-        padding-left: 0.5rem;
-        border-left: 5px solid #4B0082;
+        font-size: 1.25rem;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
     }
     
-    /* Card Styles */
     .card {
-        background-color: white;
-        border-radius: 0.75rem;
-        padding: 1rem;
-        box-shadow: 0 0.375rem 1rem rgba(0, 0, 0, 0.1);
-        margin-bottom: 1rem;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border-top: 4px solid #4B0082;
-    }
-    
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.15);
-    }
-    
-    /* Stat Box Styles */
-    .stat-box {
-        background-color: #f8f4ff;
-        border-left: 5px solid #4B0082;
         padding: 0.75rem;
         margin-bottom: 0.75rem;
-        border-radius: 0 0.5rem 0.5rem 0;
-        transition: background-color 0.3s ease;
-    }
-    
-    .stat-box:hover {
-        background-color: #f0e6ff;
+        background-color: #ffffff;
     }
     
     .highlight {
-        color: #4B0082;
-        font-weight: bold;
-        font-size: 1.75rem;
-    }
-    
-    /* Tab Styles */
-    .stTabs [data-baseweb="tab-list"] {
-        gap: 1.5rem;
-        background-color: #f8f4ff;
-        padding: 0.5rem;
-        border-radius: 0.625rem 0.625rem 0 0;
-        overflow-x: auto;
-        flex-wrap: nowrap;
-        white-space: nowrap;
+        font-size: 1.5rem;
     }
     
     .stTabs [data-baseweb="tab"] {
-        height: 3rem;
-        white-space: pre-wrap;
-        background-color: #F3F4F6;
-        border-radius: 0.5rem 0.5rem 0 0;
-        padding: 0.5rem 1rem;
-        font-weight: 500;
-        transition: all 0.2s ease;
-        border: none;
-        min-width: fit-content;
-    }
-    
-    .stTabs [aria-selected="true"] {
-        background-color: #4B0082;
-        color: white;
-        box-shadow: 0 -0.25rem 0.625rem rgba(0, 0, 0, 0.1);
-    }
-    
-    .stTabs [data-baseweb="tab"]:hover:not([aria-selected="true"]) {
-        background-color: #e6e0f0;
+        padding: 0.375rem 0.75rem;
+        height: 2.5rem;
+        font-size: 0.875rem;
+        background-color: #f3eeff;
     }
     
     .stTabs [data-baseweb="tab-panel"] {
-        background-color: white;
-        border-radius: 0 0 0.625rem 0.625rem;
-        padding: 1rem;
-        box-shadow: 0 0.375rem 1rem rgba(0, 0, 0, 0.1);
+        padding: 0.75rem;
+        background-color: #ffffff;
     }
     
-    /* Form Styles */
     .stButton>button {
-        background-color: #4B0082;
-        color: white;
-        border-radius: 0.5rem;
-        padding: 0.5rem 1.5rem;
-        font-weight: 500;
-        border: none;
-        transition: all 0.3s ease;
-        width: 100%;
-        max-width: 300px;
-        margin: 0 auto;
-        display: block;
-    }
-    
-    .stButton>button:hover {
-        background-color: #5c0099;
-        box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
-        transform: translateY(-2px);
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
     }
     
     .stTextInput>div>div>input, .stNumberInput>div>div>input, .stSelectbox>div>div>div {
-        border-radius: 0.5rem;
-        border: 1px solid #d0d0d0;
-        padding: 0.625rem 0.75rem;
-        font-size: 1rem;
+        padding: 0.5rem;
+        font-size: 0.875rem;
+        border-color: #d0c0e0;
     }
     
-    .stTextInput>div>div>input:focus, .stNumberInput>div>div>input:focus {
-        border-color: #4B0082;
-        box-shadow: 0 0 0 2px rgba(75, 0, 130, 0.2);
-    }
-    
-    /* Expander Styles */
-    .streamlit-expanderHeader {
-        background-color: #f8f4ff;
-        border-radius: 0.5rem;
-        padding: 0.625rem 0.9375rem;
-        font-weight: 500;
-        color: #4B0082;
-        border: 1px solid #e0d0ff;
-    }
-    
-    .streamlit-expanderContent {
-        border: 1px solid #e0d0ff;
-        border-top: none;
-        border-radius: 0 0 0.5rem 0.5rem;
-        padding: 1.25rem;
-    }
-    
-    /* Table Styles */
-    .stDataFrame {
-        border-radius: 0.625rem;
-        overflow: hidden;
-        box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.08);
-        width: 100%;
-        overflow-x: auto;
-    }
-    
-    .stDataFrame table {
-        border-collapse: separate;
-        border-spacing: 0;
-        width: 100%;
-    }
-    
-    .stDataFrame th {
-        background-color: #4B0082;
-        color: white;
-        padding: 0.75rem 0.9375rem;
-        font-weight: 500;
-        white-space: nowrap;
-        position: sticky;
-        top: 0;
-        z-index: 1;
+    .stDataFrame th, .stDataFrame td {
+        padding: 0.5rem;
+        font-size: 0.875rem;
     }
     
     .stDataFrame td {
-        padding: 0.625rem 0.9375rem;
-        border-bottom: 1px solid #f0f0f0;
-        white-space: normal;
-        word-break: break-word;
+        color: #3a2f45;
     }
     
-    .stDataFrame tr:nth-child(even) {
-        background-color: #f8f4ff;
-    }
-    
-    /* Sidebar Styles */
-    .css-1d391kg, .css-12oz5g7 {
-        background-color: #f0e6ff;
-    }
-    
-    .sidebar .sidebar-content {
-        background-color: #f0e6ff;
-    }
-    
-    /* Alert and Info Styles */
-    .stAlert {
-        border-radius: 0.5rem;
-        padding: 0.9375rem;
-        margin-bottom: 1.25rem;
-    }
-    
-    .stAlert>div {
-        padding: 0.9375rem;
-        border-radius: 0.5rem;
-    }
-    
-    /* Success Message */
-    .element-container:has(div[data-testid="stText"] div[class*="success"]) {
-        background-color: #e6ffea;
-        padding: 0.9375rem;
-        border-radius: 0.5rem;
-        border-left: 5px solid #00cc66;
-        margin-bottom: 1.25rem;
-    }
-    
-    /* Error Message */
-    .element-container:has(div[data-testid="stText"] div[class*="error"]) {
-        background-color: #ffe6e6;
-        padding: 0.9375rem;
-        border-radius: 0.5rem;
-        border-left: 5px solid #ff3333;
-        margin-bottom: 1.25rem;
-    }
-    
-    /* Info Message */
-    .element-container:has(div[data-testid="stText"] div[class*="info"]) {
-        background-color: #e6f2ff;
-        padding: 0.9375rem;
-        border-radius: 0.5rem;
-        border-left: 5px solid #3399ff;
-        margin-bottom: 1.25rem;
-    }
-    
-    /* Multiselect */
-    .stMultiSelect>div>div>div {
-        background-color: white;
-        border-radius: 0.5rem;
-    }
-    
-    /* Checkbox */
-    .stCheckbox>div>div>label {
-        color: #4B0082;
-    }
-    
-    /* Radio */
-    .stRadio>div>div>label {
-        color: #4B0082;
-    }
-    
-    /* Slider */
-    .stSlider>div>div>div>div {
-        background-color: #4B0082;
-    }
-    
-    /* Progress Bar */
-    .stProgress>div>div>div>div {
-        background-color: #4B0082;
-    }
-    
-    /* Subheader */
     h3 {
-        color: #4B0082;
-        font-weight: 600;
-        margin-top: 1.25rem;
-        margin-bottom: 0.625rem;
-    }
-    
-    /* Bold text */
-    strong {
+        font-size: 1.25rem;
         color: #4B0082;
     }
+    
+    /* Improve form layout on mobile */
+    .stForm > div {
+        flex-direction: column;
+    }
+    
+    /* Make columns stack on mobile */
+    .row-widget.stHorizontal {
+        flex-wrap: wrap;
+    }
+    
+    .row-widget.stHorizontal > div {
+        flex: 1 1 100%;
+        min-width: 100%;
+        margin-bottom: 0.75rem;
+    }
+    
+    /* Adjust sidebar for mobile */
+    .css-1d391kg, .css-12oz5g7 {
+        width: 100% !important;
+        background-color: #f0e6ff;
+    }
+}
 
-    /* Chart Styles */
-    .stChart > div > div > svg {
-        color: #4B0082 !important;
+/* Tablet Responsive Styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .main-header {
+        font-size: 1.75rem;
     }
     
-    .stChart > div > div > svg g path.highcharts-point {
-        fill: #4B0082 !important;
+    .card {
+        padding: 0.875rem;
+        background-color: #ffffff;
     }
     
-    .stChart > div > div > svg g path.highcharts-graph {
-        stroke: #4B0082 !important;
+    .stTabs [data-baseweb="tab"] {
+        padding: 0.5rem 1rem;
+        background-color: #f3eeff;
     }
-    
-    .stChart > div > div > svg g rect.highcharts-point {
-        fill: #4B0082 !important;
-    }
-    
-    /* Streamlit's built-in charts */
-    .element-container:has(div[data-testid="stChart"]) svg > g > rect {
-        fill: #4B0082 !important;
-    }
-    
-    /* Line charts */
-    .element-container:has(div[data-testid="stChart"]) svg > g > path {
-        stroke: #4B0082 !important;
-    }
-    
-    /* Altair charts */
-    .element-container:has(div[data-testid="stChart"]) svg .mark-rect > path {
-        fill: #4B0082 !important;
-    }
-    
-    .element-container:has(div[data-testid="stChart"]) svg .mark-line > path {
-        stroke: #4B0082 !important;
-    }
-    
-    /* Additional chart elements */
-    .element-container:has(div[data-testid="stChart"]) svg g.tick text {
-        fill: #333333 !important;
-    }
-    
-    /* Bar chart specific */
-    .element-container:has(div[data-testid="stChart"]) svg g > rect.rect {
-        fill: #4B0082 !important;
-    }
-    
-    /* For vega-lite charts */
-    .element-container:has(div[data-testid="stVegaLiteChart"]) svg rect.mark-rect {
-        fill: #4B0082 !important;
-    }
-    
-    .element-container:has(div[data-testid="stVegaLiteChart"]) svg path.mark-line {
-        stroke: #4B0082 !important;
-    }
-    
-    /* Mobile Responsive Styles */
-    @media (max-width: 768px) {
-        .main {
-            padding: 0.5rem;
-        }
-        
-        .main-header {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-        }
-        
-        .section-header {
-            font-size: 1.25rem;
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .card {
-            padding: 0.75rem;
-            margin-bottom: 0.75rem;
-        }
-        
-        .highlight {
-            font-size: 1.5rem;
-        }
-        
-        .stTabs [data-baseweb="tab"] {
-            padding: 0.375rem 0.75rem;
-            height: 2.5rem;
-            font-size: 0.875rem;
-        }
-        
-        .stTabs [data-baseweb="tab-panel"] {
-            padding: 0.75rem;
-        }
-        
-        .stButton>button {
-            padding: 0.5rem 1rem;
-            font-size: 0.875rem;
-        }
-        
-        .stTextInput>div>div>input, .stNumberInput>div>div>input, .stSelectbox>div>div>div {
-            padding: 0.5rem;
-            font-size: 0.875rem;
-        }
-        
-        .stDataFrame th, .stDataFrame td {
-            padding: 0.5rem;
-            font-size: 0.875rem;
-        }
-        
-        h3 {
-            font-size: 1.25rem;
-        }
-        
-        /* Improve form layout on mobile */
-        .stForm > div {
-            flex-direction: column;
-        }
-        
-        /* Make columns stack on mobile */
-        .row-widget.stHorizontal {
-            flex-wrap: wrap;
-        }
-        
-        .row-widget.stHorizontal > div {
-            flex: 1 1 100%;
-            min-width: 100%;
-            margin-bottom: 0.75rem;
-        }
-        
-        /* Adjust sidebar for mobile */
-        .css-1d391kg, .css-12oz5g7 {
-            width: 100% !important;
-        }
-    }
-    
-    /* Tablet Responsive Styles */
-    @media (min-width: 769px) and (max-width: 1024px) {
-        .main-header {
-            font-size: 1.75rem;
-        }
-        
-        .card {
-            padding: 0.875rem;
-        }
-        
-        .stTabs [data-baseweb="tab"] {
-            padding: 0.5rem 1rem;
-        }
-    }
-    
-    /* Improve touch targets on mobile */
-    @media (pointer: coarse) {
-        .stButton>button, 
-        .stSelectbox>div>div>div,
-        .stTextInput>div>div>input,
-        .stNumberInput>div>div>input,
-        .streamlit-expanderHeader {
-            min-height: 2.75rem;
-        }
-        
-        .stCheckbox>div>div>label,
-        .stRadio>div>div>label {
-            padding: 0.5rem 0;
-            display: block;
-        }
-    }
+}
 
-    /* Additional Mobile Optimizations */
-    @media (max-width: 768px) {
-        /* Improve table display on mobile */
-        .stDataFrame {
-            font-size: 0.75rem;
-        }
-        
-        .stDataFrame table {
-            table-layout: fixed;
-        }
-        
-        /* Hide or truncate long IDs on mobile */
-        .stDataFrame td:nth-child(1) {
-            max-width: 80px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        
-        /* Make sure buttons are properly sized on mobile */
-        .stButton>button {
-            width: 100%;
-            max-width: none;
-            padding: 0.75rem 0.5rem;
-        }
-        
-        /* Improve form layout on small screens */
-        .stForm {
-            padding: 0.5rem;
-        }
-        
-        /* Adjust card padding for mobile */
-        .card {
-            padding: 0.5rem;
-        }
-        
-        /* Make tabs more touch-friendly */
-        .stTabs [data-baseweb="tab"] {
-            min-width: 80px;
-            padding: 0.5rem;
-        }
-        
-        /* Improve sidebar on mobile */
-        .css-1d391kg, .css-12oz5g7 {
-            padding: 1rem 0.5rem !important;
-        }
+/* Improve touch targets on mobile */
+@media (pointer: coarse) {
+    .stButton>button, 
+    .stSelectbox>div>div>div,
+    .stTextInput>div>div>input,
+    .stNumberInput>div>div>input,
+    .streamlit-expanderHeader {
+        min-height: 2.75rem;
     }
-    </style>
+    
+    .stCheckbox>div>div>label,
+    .stRadio>div>div>label {
+        padding: 0.5rem 0;
+        display: block;
+    }
+}
+
+/* Additional Mobile Optimizations */
+@media (max-width: 768px) {
+    /* Improve table display on mobile */
+    .stDataFrame {
+        font-size: 0.75rem;
+    }
+    
+    .stDataFrame table {
+        table-layout: fixed;
+    }
+    
+    /* Hide or truncate long IDs on mobile */
+    .stDataFrame td:nth-child(1) {
+        max-width: 80px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    
+    /* Make sure buttons are properly sized on mobile */
+    .stButton>button {
+        width: 100%;
+        max-width: none;
+        padding: 0.75rem 0.5rem;
+    }
+    
+    /* Improve form layout on small screens */
+    .stForm {
+        padding: 0.5rem;
+    }
+    
+    /* Adjust card padding for mobile */
+    .card {
+        padding: 0.5rem;
+    }
+    
+    /* Make tabs more touch-friendly */
+    .stTabs [data-baseweb="tab"] {
+        min-width: 80px;
+        padding: 0.5rem;
+    }
+    
+    /* Improve sidebar on mobile */
+    .css-1d391kg, .css-12oz5g7 {
+        padding: 1rem 0.5rem !important;
+    }
+}
+</style>
     """, unsafe_allow_html=True)
 
 # Apply custom styles
