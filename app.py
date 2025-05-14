@@ -1,3 +1,4 @@
+
 import streamlit as st # type: ignore
 import pandas as pd # type: ignore
 import uuid
@@ -329,6 +330,12 @@ def get_courses():
             }
         ]
         courses = list(db.courses.aggregate(pipeline))
+        
+        # For better mobile display, create a shorter ID version
+        for course in courses:
+            if 'id' in course:
+                course['short_id'] = course['id'][:8] + "..." if len(course['id']) > 8 else course['id']
+                
         return pd.DataFrame(courses)
     except Exception as e:
         st.error(f"Error fetching courses: {e}")
@@ -362,6 +369,8 @@ def get_students():
             }
         ]
         students = list(db.persons.aggregate(pipeline))
+        for student in students:
+            student["id"] = truncate_id_for_display(student["id"])
         return pd.DataFrame(students)
     except Exception as e:
         st.error(f"Error fetching students: {e}")
@@ -403,6 +412,8 @@ def get_instructors():
             }
         ]
         instructors = list(db.persons.aggregate(pipeline))
+        for instructor in instructors:
+            instructor["id"] = truncate_id_for_display(instructor["id"])
         return pd.DataFrame(instructors)
     except Exception as e:
         st.error(f"Error fetching instructors: {e}")
@@ -449,6 +460,9 @@ def get_enrollments():
             }
         ]
         enrollments = list(db.enrollments.aggregate(pipeline))
+        for enrollment in enrollments:
+            enrollment["student_id"] = truncate_id_for_display(enrollment["student_id"])
+            enrollment["course_id"] = truncate_id_for_display(enrollment["course_id"])
         return pd.DataFrame(enrollments)
     except Exception as e:
         st.error(f"Error fetching enrollments: {e}")
@@ -501,6 +515,8 @@ def get_student_courses(student_id):
             }
         ]
         courses = list(db.enrollments.aggregate(pipeline))
+        for course in courses:
+            course["id"] = truncate_id_for_display(course["id"])
         return pd.DataFrame(courses)
     except Exception as e:
         st.error(f"Error fetching student courses: {e}")
@@ -544,6 +560,8 @@ def get_instructor_courses(instructor_id):
             }
         ]
         courses = list(db.courses.aggregate(pipeline))
+        for course in courses:
+            course["id"] = truncate_id_for_display(course["id"])
         return pd.DataFrame(courses)
     except Exception as e:
         st.error(f"Error fetching instructor courses: {e}")
@@ -566,6 +584,12 @@ def get_person_id_by_username(username, role):
     except Exception as e:
         st.error(f"Error finding person by username: {e}")
         return None
+
+def truncate_id_for_display(id_str, length=8):
+    """Truncate long IDs for better display on mobile"""
+    if id_str and isinstance(id_str, str) and len(id_str) > length:
+        return id_str[:length] + "..."
+    return id_str
 
 # Custom styling
 def apply_custom_styles():
@@ -1017,11 +1041,108 @@ def apply_custom_styles():
             display: block;
         }
     }
+
+    /* Additional Mobile Optimizations */
+    @media (max-width: 768px) {
+        /* Improve table display on mobile */
+        .stDataFrame {
+            font-size: 0.75rem;
+        }
+        
+        .stDataFrame table {
+            table-layout: fixed;
+        }
+        
+        /* Hide or truncate long IDs on mobile */
+        .stDataFrame td:nth-child(1) {
+            max-width: 80px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        /* Make sure buttons are properly sized on mobile */
+        .stButton>button {
+            width: 100%;
+            max-width: none;
+            padding: 0.75rem 0.5rem;
+        }
+        
+        /* Improve form layout on small screens */
+        .stForm {
+            padding: 0.5rem;
+        }
+        
+        /* Adjust card padding for mobile */
+        .card {
+            padding: 0.5rem;
+        }
+        
+        /* Make tabs more touch-friendly */
+        .stTabs [data-baseweb="tab"] {
+            min-width: 80px;
+            padding: 0.5rem;
+        }
+        
+        /* Improve sidebar on mobile */
+        .css-1d391kg, .css-12oz5g7 {
+            padding: 1rem 0.5rem !important;
+        }
+    }
     </style>
     """, unsafe_allow_html=True)
 
 # Apply custom styles
 apply_custom_styles()
+
+def is_mobile():
+    """Detect if user is on a mobile device based on viewport width"""
+    mobile_detector = """
+    <script>
+    if (window.innerWidth < 768) {
+        document.documentElement.classList.add('mobile');
+    } else {
+        document.documentElement.classList.remove('mobile');
+    }
+    </script>
+    """
+    st.markdown(mobile_detector, unsafe_allow_html=True)
+    
+    # Add CSS for mobile-specific styling
+    st.markdown("""
+    <style>
+    html.mobile .hide-on-mobile {
+        display: none !important;
+    }
+    
+    html.mobile .mobile-full-width {
+        width: 100% !important;
+    }
+    
+    html.mobile .mobile-smaller-text {
+        font-size: 0.8rem !important;
+    }
+    
+    html.mobile .mobile-compact-table td {
+        padding: 0.25rem !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+def create_mobile_friendly_cards(data_list, title_field, fields_to_display):
+    """Create mobile-friendly cards instead of tables for small screens"""
+    if not data_list:
+        return
+        
+    for item in data_list:
+        st.markdown(f"<div class='card'>", unsafe_allow_html=True)
+        st.markdown(f"<h4>{item.get(title_field, 'Item')}</h4>", unsafe_allow_html=True)
+        
+        for field, label in fields_to_display.items():
+            value = item.get(field, "N/A")
+            st.markdown(f"<p><strong>{label}:</strong> {value}</p>", unsafe_allow_html=True)
+            
+        st.markdown("</div>", unsafe_allow_html=True)
 
 # Authentication functions
 def signup():
@@ -1154,6 +1275,25 @@ def admin_dashboard():
     
     # Admin tabs
     admin_tabs = st.tabs(["Students", "Instructors", "Courses", "Departments", "Users", "Reports"])
+
+    # Add responsive class to improve mobile display
+    st.markdown("""
+<style>
+@media (max-width: 768px) {
+    .main-header {
+        font-size: 1.25rem;
+    }
+    
+    /* Hide ID columns on very small screens */
+    @media (max-width: 480px) {
+        .stDataFrame [data-testid="column_header"]:first-child,
+        .stDataFrame [data-testid="cell"]:first-child {
+            display: none;
+        }
+    }
+}
+</style>
+""", unsafe_allow_html=True)
     
     with admin_tabs[0]:
         # Students management
@@ -1291,8 +1431,19 @@ def admin_dashboard():
     with admin_tabs[2]:
         # Courses management
         st.markdown("<div class='section-header'>Course Management</div>", unsafe_allow_html=True)
+        
+        # Check if on mobile and adjust display
+        is_mobile_view = st.checkbox("Compact view", value=True)
+        
         courses_df = get_courses()
-        st.dataframe(courses_df, use_container_width=True, hide_index=True)
+        
+        if is_mobile_view:
+            # Mobile-friendly display with fewer columns
+            display_cols = ["code", "name", "department", "credits"]
+            st.dataframe(courses_df[display_cols], use_container_width=True, hide_index=True)
+        else:
+            # Full display for larger screens
+            st.dataframe(courses_df, use_container_width=True, hide_index=True)
         
         # Add new course
         with st.expander("Add New Course"):
@@ -1623,7 +1774,22 @@ def instructor_dashboard():
             st.markdown("<div class='section-header'>My Courses</div>", unsafe_allow_html=True)
             
             if not instructor_courses.empty:
-                st.dataframe(instructor_courses, use_container_width=True, hide_index=True)
+                # Add toggle for mobile view
+                use_card_view = st.checkbox("Card view (better for mobile)", value=True)
+                
+                if use_card_view:
+                    # Convert DataFrame to list of dicts for card display
+                    courses_list = instructor_courses.to_dict('records')
+                    fields_to_display = {
+                        "code": "Code",
+                        "name": "Name",
+                        "department": "Department",
+                        "credits": "Credits",
+                        "enrolled_students": "Students"
+                    }
+                    create_mobile_friendly_cards(courses_list, "name", fields_to_display)
+                else:
+                    st.dataframe(instructor_courses, use_container_width=True, hide_index=True)
             else:
                 st.info("You are not teaching any courses yet.")
         
@@ -1688,8 +1854,6 @@ def instructor_dashboard():
                         # Get current grade
                         current_grade = None
                         for student in enrolled_students:
-                            if student["student_id"] == student_id:
-                                current_ 
                             if student["student_id"] == student_id:
                                 current_grade = student.get("grade")
                                 break
@@ -1885,27 +2049,43 @@ def student_dashboard():
             st.markdown("<div class='section-header'>My Courses</div>", unsafe_allow_html=True)
             
             if not student_courses.empty:
-                # Display courses
-                for _, course in student_courses.iterrows():
-                    st.markdown("<div class='card'>", unsafe_allow_html=True)
-                    st.subheader(f"{course['code']} - {course['name']}")
-                    
-                    col1, col2 = st.columns(2)
-                    
-                    with col1:
-                        st.write(f"**Department:** {course.get('department', 'Not Available')}")
-                        st.write(f"**Instructor:** {course.get('instructor', 'Not Assigned')}")
-                        st.write(f"**Credits:** {course['credits']}")
-                    
-                    with col2:
-                        st.write(f"**Schedule:** {course.get('schedule', 'Not Available')}")
-                        st.write(f"**Classroom:** {course.get('classroom', 'Not Available')}")
-                        if pd.notna(course['grade']):
-                            st.write(f"**Grade:** {course['grade']}")
-                        else:
-                            st.write("**Grade:** Not graded yet")
-                    
-                    st.markdown("</div>", unsafe_allow_html=True)
+                # Add toggle for mobile view
+                use_card_view = st.checkbox("Card view (better for mobile)", value=True)
+                
+                if use_card_view:
+                    # Convert DataFrame to list of dicts for card display
+                    courses_list = student_courses.to_dict('records')
+                    fields_to_display = {
+                        "code": "Code",
+                        "name": "Name",
+                        "department": "Department",
+                        "instructor": "Instructor",
+                        "credits": "Credits",
+                        "grade": "Grade"
+                    }
+                    create_mobile_friendly_cards(courses_list, "name", fields_to_display)
+                else:
+                    # Original display with cards
+                    for _, course in student_courses.iterrows():
+                        st.markdown("<div class='card'>", unsafe_allow_html=True)
+                        st.subheader(f"{course['code']} - {course['name']}")
+                        
+                        col1, col2 = st.columns(2)
+                        
+                        with col1:
+                            st.write(f"**Department:** {course.get('department', 'Not Available')}")
+                            st.write(f"**Instructor:** {course.get('instructor', 'Not Assigned')}")
+                            st.write(f"**Credits:** {course['credits']}")
+                        
+                        with col2:
+                            st.write(f"**Schedule:** {course.get('schedule', 'Not Available')}")
+                            st.write(f"**Classroom:** {course.get('classroom', 'Not Available')}")
+                            if pd.notna(course['grade']):
+                                st.write(f"**Grade:** {course['grade']}")
+                            else:
+                                st.write("**Grade:** Not graded yet")
+                        
+                        st.markdown("</div>", unsafe_allow_html=True)
             else:
                 st.info("You are not enrolled in any courses yet.")
         
@@ -2025,6 +2205,9 @@ def student_dashboard():
         st.error(f"Error loading student dashboard: {e}")
 
 def main():
+    # Check if user is on mobile and apply appropriate styles
+    is_mobile()
+    
     st.sidebar.title("🏫 University Management System")
     st.sidebar.markdown("---")
 
@@ -2072,5 +2255,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
