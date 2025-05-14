@@ -594,7 +594,7 @@ def truncate_id_for_display(id_str, length=8):
 def apply_custom_styles():
     st.markdown("""
     <style>
-/* Base styles to ensure consistent appearance */
+/* Base styles */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #2e1a47;
@@ -815,6 +815,39 @@ body {
 }
 
 .stDataFrame tr:nth-child(even) td {
+    background-color: #f8f4ff !important;
+}
+
+/* Fix for DataFrames */
+[data-testid="stTable"] {
+    width: 100%;
+}
+
+[data-testid="stTable"] > div {
+    overflow-x: auto;
+}
+
+[data-testid="stTable"] table {
+    width: 100%;
+    color: #2e1a47 !important;
+}
+
+[data-testid="stTable"] th {
+    background-color: #4B0082 !important;
+    color: white !important;
+    font-weight: 500;
+    padding: 0.75rem;
+    text-align: left;
+}
+
+[data-testid="stTable"] td {
+    background-color: #ffffff !important;
+    color: #2e1a47 !important;
+    padding: 0.625rem;
+    border-bottom: 1px solid #f0e6ff;
+}
+
+[data-testid="stTable"] tr:nth-child(even) td {
     background-color: #f8f4ff !important;
 }
 
@@ -1232,7 +1265,137 @@ button {
     color: #ffffff !important;
     border: none !important;
 }
+
+/* Fix for DataFrames */
+.dataframe {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    color: #2e1a47 !important;
+}
+
+.dataframe th {
+    background-color: #4B0082 !important;
+    color: white !important;
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 500;
+}
+
+.dataframe td {
+    padding: 0.625rem;
+    border-bottom: 1px solid #f0e6ff;
+    background-color: #ffffff !important;
+    color: #2e1a47 !important;
+}
+
+.dataframe tr:nth-child(even) td {
+    background-color: #f8f4ff !important;
+}
+
+/* Fix for empty tables */
+.empty-table-message {
+    padding: 2rem;
+    text-align: center;
+    background-color: #f8f4ff;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+    color: #4B0082;
+    font-weight: 500;
+}
+
+/* Fix for Streamlit's data display */
+[data-testid="stDataFrame"] {
+    width: 100%;
+}
+
+[data-testid="stDataFrame"] > div {
+    background-color: #ffffff !important;
+}
+
+[data-testid="stDataFrame"] table {
+    color: #2e1a47 !important;
+}
+
+[data-testid="stDataFrame"] th {
+    background-color: #4B0082 !important;
+    color: white !important;
+}
+
+[data-testid="stDataFrame"] td {
+    background-color: #ffffff !important;
+    color: #2e1a47 !important;
+}
+
+[data-testid="stDataFrame"] tr:nth-child(even) td {
+    background-color: #f8f4ff !important;
+}
+
+/* Fix for Streamlit's data editor */
+[data-testid="stDataEditor"] {
+    width: 100%;
+}
+
+[data-testid="stDataEditor"] > div {
+    background-color: #ffffff !important;
+}
+
+[data-testid="stDataEditor"] table {
+    color: #2e1a47 !important;
+}
+
+[data-testid="stDataEditor"] th {
+    background-color: #4B0082 !important;
+    color: white !important;
+}
+
+[data-testid="stDataEditor"] td {
+    background-color: #ffffff !important;
+    color: #2e1a47 !important;
+}
+
+[data-testid="stDataEditor"] tr:nth-child(even) td {
+    background-color: #f8f4ff !important;
+}
 </style>
+
+<script>
+// Force proper styling on load
+document.addEventListener('DOMContentLoaded', function() {
+    // Force white background
+    document.body.style.backgroundColor = '#ffffff';
+    document.body.style.color = '#2e1a47';
+    
+    // Force table styling
+    const applyTableStyles = () => {
+        // Style all dataframes
+        const dataFrames = document.querySelectorAll('[data-testid="stDataFrame"]');
+        dataFrames.forEach(df => {
+            // Style the container
+            df.style.backgroundColor = '#ffffff';
+            
+            // Style the table headers
+            const headers = df.querySelectorAll('th');
+            headers.forEach(header => {
+                header.style.backgroundColor = '#4B0082';
+                header.style.color = '#ffffff';
+            });
+            
+            // Style the table cells
+            const cells = df.querySelectorAll('td');
+            cells.forEach((cell, index) => {
+                cell.style.backgroundColor = index % 2 === 0 ? '#ffffff' : '#f8f4ff';
+                cell.style.color = '#2e1a47';
+            });
+        });
+    };
+    
+    // Apply styles immediately and after a delay to catch dynamically loaded content
+    applyTableStyles();
+    setTimeout(applyTableStyles, 1000);
+    setTimeout(applyTableStyles, 2000);
+});
+</script>
     """, unsafe_allow_html=True)
 
 # Apply custom styles
@@ -1271,6 +1434,31 @@ def is_mobile():
             button.style.backgroundColor = '#4B0082';
             button.style.color = '#ffffff';
             button.style.border = 'none';
+        });
+        
+        // Force table styling
+        const tables = document.querySelectorAll('table');
+        tables.forEach(table => {
+            table.style.width = '100%';
+            table.style.borderCollapse = 'collapse';
+            
+            const headers = table.querySelectorAll('th');
+            headers.forEach(header => {
+                header.style.backgroundColor = '#4B0082';
+                header.style.color = '#ffffff';
+                header.style.padding = '0.75rem';
+            });
+            
+            const rows = table.querySelectorAll('tr');
+            rows.forEach((row, index) => {
+                const cells = row.querySelectorAll('td');
+                cells.forEach(cell => {
+                    cell.style.backgroundColor = index % 2 === 0 ? '#ffffff' : '#f8f4ff';
+                    cell.style.color = '#2e1a47';
+                    cell.style.padding = '0.625rem';
+                    cell.style.borderBottom = '1px solid #f0e6ff';
+                });
+            });
         });
     });
     </script>
@@ -1468,7 +1656,40 @@ def admin_dashboard():
         # Students management
         st.markdown("<div class='section-header'>Student Management</div>", unsafe_allow_html=True)
         students_df = get_students()
-        st.dataframe(students_df, use_container_width=True, hide_index=True)
+        
+        if not students_df.empty:
+            # Display the dataframe with custom styling
+            st.markdown("""
+            <style>
+            .student-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 1rem 0;
+            }
+            .student-table th {
+                background-color: #4B0082;
+                color: white;
+                padding: 0.75rem;
+                text-align: left;
+                font-weight: 500;
+            }
+            .student-table td {
+                padding: 0.625rem;
+                border-bottom: 1px solid #f0e6ff;
+                background-color: #ffffff;
+                color: #2e1a47;
+            }
+            .student-table tr:nth-child(even) td {
+                background-color: #f8f4ff;
+            }
+            </style>
+            """, unsafe_allow_html=True)
+            
+            # Convert DataFrame to HTML with custom styling
+            html_table = students_df.to_html(classes='student-table', index=False, escape=False)
+            st.markdown(html_table, unsafe_allow_html=True)
+        else:
+            st.info("No students found. Add students using the form below.")
         
         # Add new student
         with st.expander("Add New Student"):
@@ -1526,6 +1747,7 @@ def admin_dashboard():
                                 })
                                 
                                 st.success("Student added successfully!")
+                                st.rerun()
                         except Exception as e:
                             st.error(f"Error adding student: {e}")
                     else:
@@ -1535,7 +1757,40 @@ def admin_dashboard():
         # Instructors management
         st.markdown("<div class='section-header'>Instructor Management</div>", unsafe_allow_html=True)
         instructors_df = get_instructors()
-        st.dataframe(instructors_df, use_container_width=True, hide_index=True)
+        
+        if not instructors_df.empty:
+            # Display the dataframe with custom styling
+            st.markdown("""
+            <style>
+            .instructor-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 1rem 0;
+            }
+            .instructor-table th {
+                background-color: #4B0082;
+                color: white;
+                padding: 0.75rem;
+                text-align: left;
+                font-weight: 500;
+            }
+            .instructor-table td {
+                padding: 0.625rem;
+                border-bottom: 1px solid #f0e6ff;
+                background-color: #ffffff;
+                color: #2e1a47;
+            }
+            .instructor-table tr:nth-child(even) td {
+                background-color: #f8f4ff;
+            }
+            </style>
+            """, unsafe_allow_html=True)
+            
+            # Convert DataFrame to HTML with custom styling
+            html_table = instructors_df.to_html(classes='instructor-table', index=False, escape=False)
+            st.markdown(html_table, unsafe_allow_html=True)
+        else:
+            st.info("No instructors found. Add instructors using the form below.")
         
         # Add new instructor
         with st.expander("Add New Instructor"):
@@ -1592,6 +1847,7 @@ def admin_dashboard():
                             })
                             
                             st.success("Instructor added successfully!")
+                            st.rerun()
                         except Exception as e:
                             st.error(f"Error adding instructor: {e}")
                     else:
@@ -1606,13 +1862,74 @@ def admin_dashboard():
         
         courses_df = get_courses()
         
-        if is_mobile_view:
-            # Mobile-friendly display with fewer columns
-            display_cols = ["code", "name", "department", "credits"]
-            st.dataframe(courses_df[display_cols], use_container_width=True, hide_index=True)
+        if not courses_df.empty:
+            if is_mobile_view:
+                # Mobile-friendly display with fewer columns
+                display_cols = ["code", "name", "department", "credits"]
+                
+                # Display the dataframe with custom styling
+                st.markdown("""
+                <style>
+                .course-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin: 1rem 0;
+                }
+                .course-table th {
+                    background-color: #4B0082;
+                    color: white;
+                    padding: 0.75rem;
+                    text-align: left;
+                    font-weight: 500;
+                }
+                .course-table td {
+                    padding: 0.625rem;
+                    border-bottom: 1px solid #f0e6ff;
+                    background-color: #ffffff;
+                    color: #2e1a47;
+                }
+                .course-table tr:nth-child(even) td {
+                    background-color: #f8f4ff;
+                }
+                </style>
+                """, unsafe_allow_html=True)
+                
+                # Convert DataFrame to HTML with custom styling
+                html_table = courses_df[display_cols].to_html(classes='course-table', index=False, escape=False)
+                st.markdown(html_table, unsafe_allow_html=True)
+            else:
+                # Full display for larger screens
+                st.markdown("""
+                <style>
+                .course-table-full {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin: 1rem 0;
+                }
+                .course-table-full th {
+                    background-color: #4B0082;
+                    color: white;
+                    padding: 0.75rem;
+                    text-align: left;
+                    font-weight: 500;
+                }
+                .course-table-full td {
+                    padding: 0.625rem;
+                    border-bottom: 1px solid #f0e6ff;
+                    background-color: #ffffff;
+                    color: #2e1a47;
+                }
+                .course-table-full tr:nth-child(even) td {
+                    background-color: #f8f4ff;
+                }
+                </style>
+                """, unsafe_allow_html=True)
+                
+                # Convert DataFrame to HTML with custom styling
+                html_table = courses_df.to_html(classes='course-table-full', index=False, escape=False)
+                st.markdown(html_table, unsafe_allow_html=True)
         else:
-            # Full display for larger screens
-            st.dataframe(courses_df, use_container_width=True, hide_index=True)
+            st.info("No courses found. Add courses using the form below.")
         
         # Add new course
         with st.expander("Add New Course"):
@@ -1660,6 +1977,7 @@ def admin_dashboard():
                             })
                             
                             st.success("Course added successfully!")
+                            st.rerun()
                         except Exception as e:
                             st.error(f"Error adding course: {e}")
                     else:
@@ -1669,7 +1987,40 @@ def admin_dashboard():
         # Departments management
         st.markdown("<div class='section-header'>Department Management</div>", unsafe_allow_html=True)
         departments_df = get_departments()
-        st.dataframe(departments_df, use_container_width=True, hide_index=True)
+        
+        if not departments_df.empty:
+            # Display the dataframe with custom styling
+            st.markdown("""
+            <style>
+            .department-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 1rem 0;
+            }
+            .department-table th {
+                background-color: #4B0082;
+                color: white;
+                padding: 0.75rem;
+                text-align: left;
+                font-weight: 500;
+            }
+            .department-table td {
+                padding: 0.625rem;
+                border-bottom: 1px solid #f0e6ff;
+                background-color: #ffffff;
+                color: #2e1a47;
+            }
+            .department-table tr:nth-child(even) td {
+                background-color: #f8f4ff;
+            }
+            </style>
+            """, unsafe_allow_html=True)
+            
+            # Convert DataFrame to HTML with custom styling
+            html_table = departments_df.to_html(classes='department-table', index=False, escape=False)
+            st.markdown(html_table, unsafe_allow_html=True)
+        else:
+            st.info("No departments found. Add departments using the form below.")
         
         # Add new department
         with st.expander("Add New Department"):
@@ -1689,6 +2040,7 @@ def admin_dashboard():
                             })
                             
                             st.success("Department added successfully!")
+                            st.rerun()
                         except Exception as e:
                             st.error(f"Error adding department: {e}")
                     else:
@@ -1700,8 +2052,42 @@ def admin_dashboard():
         
         # Get all users
         users = list(db.users.find({}, {"_id": 0, "id": 1, "username": 1, "role": 1, "created_at": 1}))
-        users_df = pd.DataFrame(users)
-        st.dataframe(users_df, use_container_width=True, hide_index=True)
+        
+        if users:
+            users_df = pd.DataFrame(users)
+            
+            # Display the dataframe with custom styling
+            st.markdown("""
+            <style>
+            .user-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 1rem 0;
+            }
+            .user-table th {
+                background-color: #4B0082;
+                color: white;
+                padding: 0.75rem;
+                text-align: left;
+                font-weight: 500;
+            }
+            .user-table td {
+                padding: 0.625rem;
+                border-bottom: 1px solid #f0e6ff;
+                background-color: #ffffff;
+                color: #2e1a47;
+            }
+            .user-table tr:nth-child(even) td {
+                background-color: #f8f4ff;
+            }
+            </style>
+            """, unsafe_allow_html=True)
+            
+            # Convert DataFrame to HTML with custom styling
+            html_table = users_df.to_html(classes='user-table', index=False, escape=False)
+            st.markdown(html_table, unsafe_allow_html=True)
+        else:
+            st.info("No users found.")
         
         # Reset password
         with st.expander("Reset User Password"):
@@ -1743,20 +2129,27 @@ def admin_dashboard():
             with col1:
                 # Age distribution
                 students = get_students()
-                st.bar_chart(students["age"].value_counts().sort_index(), use_container_width=True)
-                st.caption("Student Age Distribution")
+                if not students.empty:
+                    st.bar_chart(students["age"].value_counts().sort_index(), use_container_width=True)
+                    st.caption("Student Age Distribution")
+                else:
+                    st.info("No student data available")
             
             with col2:
                 # Program distribution
-                program_counts = students["program"].value_counts()
-                st.bar_chart(program_counts, use_container_width=True)
-                st.caption("Student Program Distribution")
+                if not students.empty:
+                    program_counts = students["program"].value_counts()
+                    st.bar_chart(program_counts, use_container_width=True)
+                    st.caption("Student Program Distribution")
+                else:
+                    st.info("No student data available")
             
             # Entry year analysis
-            st.subheader("Entry Year Analysis")
-            entry_year_counts = students["entry_year"].value_counts().sort_index()
-            st.line_chart(entry_year_counts, use_container_width=True)
-            st.caption("Students by Entry Year")
+            if not students.empty:
+                st.subheader("Entry Year Analysis")
+                entry_year_counts = students["entry_year"].value_counts().sort_index()
+                st.line_chart(entry_year_counts, use_container_width=True)
+                st.caption("Students by Entry Year")
             
             st.markdown("</div>", unsafe_allow_html=True)
         
@@ -1766,21 +2159,24 @@ def admin_dashboard():
             
             # Salary by position
             instructors = get_instructors()
-            salary_by_position = instructors.groupby("position")["salary"].mean().sort_values(ascending=False)
-            st.bar_chart(salary_by_position, use_container_width=True)
-            st.caption("Average Salary by Position")
-            
-            # Salary by department
-            salary_by_dept = instructors.groupby("department")["salary"].mean().sort_values(ascending=False)
-            st.bar_chart(salary_by_dept, use_container_width=True)
-            st.caption("Average Salary by Department")
-            
-            # Salary distribution
-            st.subheader("Salary Distribution")
-            st.altair_chart(alt.Chart(instructors).mark_bar().encode(
-                alt.X("salary:Q", bin=True),
-                y='count()',
-            ), use_container_width=True)
+            if not instructors.empty:
+                salary_by_position = instructors.groupby("position")["salary"].mean().sort_values(ascending=False)
+                st.bar_chart(salary_by_position, use_container_width=True)
+                st.caption("Average Salary by Position")
+                
+                # Salary by department
+                salary_by_dept = instructors.groupby("department")["salary"].mean().sort_values(ascending=False)
+                st.bar_chart(salary_by_dept, use_container_width=True)
+                st.caption("Average Salary by Department")
+                
+                # Salary distribution
+                st.subheader("Salary Distribution")
+                st.altair_chart(alt.Chart(instructors).mark_bar().encode(
+                    alt.X("salary:Q", bin=True),
+                    y='count()',
+                ), use_container_width=True)
+            else:
+                st.info("No instructor data available")
             
             st.markdown("</div>", unsafe_allow_html=True)
         
@@ -1958,7 +2354,36 @@ def instructor_dashboard():
                     }
                     create_mobile_friendly_cards(courses_list, "name", fields_to_display)
                 else:
-                    st.dataframe(instructor_courses, use_container_width=True, hide_index=True)
+                    # Display the dataframe with custom styling
+                    st.markdown("""
+                    <style>
+                    .instructor-courses-table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin: 1rem 0;
+                    }
+                    .instructor-courses-table th {
+                        background-color: #4B0082;
+                        color: white;
+                        padding: 0.75rem;
+                        text-align: left;
+                        font-weight: 500;
+                    }
+                    .instructor-courses-table td {
+                        padding: 0.625rem;
+                        border-bottom: 1px solid #f0e6ff;
+                        background-color: #ffffff;
+                        color: #2e1a47;
+                    }
+                    .instructor-courses-table tr:nth-child(even) td {
+                        background-color: #f8f4ff;
+                    }
+                    </style>
+                    """, unsafe_allow_html=True)
+                    
+                    # Convert DataFrame to HTML with custom styling
+                    html_table = instructor_courses.to_html(classes='instructor-courses-table', index=False, escape=False)
+                    st.markdown(html_table, unsafe_allow_html=True)
             else:
                 st.info("You are not teaching any courses yet.")
         
@@ -2010,7 +2435,37 @@ def instructor_dashboard():
                     
                     # Create a dataframe for display
                     enrolled_df = pd.DataFrame(enrolled_students)
-                    st.dataframe(enrolled_df, use_container_width=True, hide_index=True)
+                    
+                    # Display the dataframe with custom styling
+                    st.markdown("""
+                    <style>
+                    .enrolled-students-table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin: 1rem 0;
+                    }
+                    .enrolled-students-table th {
+                        background-color: #4B0082;
+                        color: white;
+                        padding: 0.75rem;
+                        text-align: left;
+                        font-weight: 500;
+                    }
+                    .enrolled-students-table td {
+                        padding: 0.625rem;
+                        border-bottom: 1px solid #f0e6ff;
+                        background-color: #ffffff;
+                        color: #2e1a47;
+                    }
+                    .enrolled-students-table tr:nth-child(even) td {
+                        background-color: #f8f4ff;
+                    }
+                    </style>
+                    """, unsafe_allow_html=True)
+                    
+                    # Convert DataFrame to HTML with custom styling
+                    html_table = enrolled_df.to_html(classes='enrolled-students-table', index=False, escape=False)
+                    st.markdown(html_table, unsafe_allow_html=True)
                     
                     # Grade update form
                     st.subheader("Update Grades")
@@ -2041,6 +2496,7 @@ def instructor_dashboard():
                                     {"$set": {"grade": selected_grade}}
                                 )
                                 st.success(f"Grade updated for {selected_student}!")
+                                st.rerun()
                             except Exception as e:
                                 st.error(f"Error updating grade: {e}")
                 else:
@@ -2099,10 +2555,40 @@ def instructor_dashboard():
                 ]
                 
                 students = list(db.enrollments.aggregate(pipeline))
-                students_df = pd.DataFrame(students)
                 
-                if not students_df.empty:
-                    st.dataframe(students_df, use_container_width=True, hide_index=True)
+                if students:
+                    students_df = pd.DataFrame(students)
+                    
+                    # Display the dataframe with custom styling
+                    st.markdown("""
+                    <style>
+                    .student-list-table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin: 1rem 0;
+                    }
+                    .student-list-table th {
+                        background-color: #4B0082;
+                        color: white;
+                        padding: 0.75rem;
+                        text-align: left;
+                        font-weight: 500;
+                    }
+                    .student-list-table td {
+                        padding: 0.625rem;
+                        border-bottom: 1px solid #f0e6ff;
+                        background-color: #ffffff;
+                        color: #2e1a47;
+                    }
+                    .student-list-table tr:nth-child(even) td {
+                        background-color: #f8f4ff;
+                    }
+                    </style>
+                    """, unsafe_allow_html=True)
+                    
+                    # Convert DataFrame to HTML with custom styling
+                    html_table = students_df.to_html(classes='student-list-table', index=False, escape=False)
+                    st.markdown(html_table, unsafe_allow_html=True)
                 else:
                     st.info("No students enrolled in your courses")
             else:
@@ -2321,8 +2807,37 @@ def student_dashboard():
             if available_courses:
                 available_df = pd.DataFrame(available_courses)
                 
-                st.dataframe(available_df[["code", "name", "department", "instructor", "credits", "schedule"]], 
-                            use_container_width=True, hide_index=True)
+                # Display the dataframe with custom styling
+                st.markdown("""
+                <style>
+                .available-courses-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin: 1rem 0;
+                }
+                .available-courses-table th {
+                    background-color: #4B0082;
+                    color: white;
+                    padding: 0.75rem;
+                    text-align: left;
+                    font-weight: 500;
+                }
+                .available-courses-table td {
+                    padding: 0.625rem;
+                    border-bottom: 1px solid #f0e6ff;
+                    background-color: #ffffff;
+                    color: #2e1a47;
+                }
+                .available-courses-table tr:nth-child(even) td {
+                    background-color: #f8f4ff;
+                }
+                </style>
+                """, unsafe_allow_html=True)
+                
+                # Convert DataFrame to HTML with custom styling
+                html_table = available_df[["code", "name", "department", "instructor", "credits", "schedule"]].to_html(
+                    classes='available-courses-table', index=False, escape=False)
+                st.markdown(html_table, unsafe_allow_html=True)
                 
                 # Registration form
                 with st.form("course_registration_form"):
@@ -2345,7 +2860,7 @@ def student_dashboard():
                                 if enrollments:
                                     db.enrollments.insert_many(enrollments)
                                     st.success(f"Successfully registered for {len(selected_courses)} courses!")
-                                    st.rerun()  # Changed from st.experimental_rerun()
+                                    st.rerun()
                             except Exception as e:
                                 st.error(f"Error registering for courses: {e}")
                         else:
@@ -2361,7 +2876,36 @@ def student_dashboard():
                 graded_courses = student_courses[['code', 'name', 'credits', 'grade']].copy()
                 graded_courses = graded_courses.fillna({'grade': 'Not Graded'})
                 
-                st.dataframe(graded_courses, use_container_width=True, hide_index=True)
+                # Display the dataframe with custom styling
+                st.markdown("""
+                <style>
+                .grades-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin: 1rem 0;
+                }
+                .grades-table th {
+                    background-color: #4B0082;
+                    color: white;
+                    padding: 0.75rem;
+                    text-align: left;
+                    font-weight: 500;
+                }
+                .grades-table td {
+                    padding: 0.625rem;
+                    border-bottom: 1px solid #f0e6ff;
+                    background-color: #ffffff;
+                    color: #2e1a47;
+                }
+                .grades-table tr:nth-child(even) td {
+                    background-color: #f8f4ff;
+                }
+                </style>
+                """, unsafe_allow_html=True)
+                
+                # Convert DataFrame to HTML with custom styling
+                html_table = graded_courses.to_html(classes='grades-table', index=False, escape=False)
+                st.markdown(html_table, unsafe_allow_html=True)
                 
                 # Grade distribution chart
                 grade_counts = graded_courses['grade'].value_counts()
@@ -2409,7 +2953,7 @@ def main():
         
         if st.sidebar.button("🔒 Logout"):
             st.session_state.clear()
-            st.rerun()  # Changed from st.experimental_rerun()
+            st.rerun()
         
         # Display appropriate dashboard based on role
         if st.session_state['role'] == "Admin":
