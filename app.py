@@ -568,13 +568,12 @@ def get_person_id_by_username(username, role):
         return None
 
 # Custom styling
-# Custom styling
 def apply_custom_styles():
     st.markdown("""
     <style>
     /* Global Styles */
     .main {
-        background-color: #e6f4ff;
+        background-color: #f5f5f5;
         padding: 1rem;
     }
     
@@ -586,22 +585,22 @@ def apply_custom_styles():
     .main-header {
         font-size: 2rem;
         font-weight: bold;
-        color: #0077b6;
+        color: #4B0082;
         text-align: center;
         margin-bottom: 1.5rem;
         padding-bottom: 0.75rem;
-        border-bottom: 3px solid #0077b6;
+        border-bottom: 3px solid #4B0082;
         text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
     
     .section-header {
         font-size: 1.5rem;
         font-weight: bold;
-        color: #0077b6;
+        color: #4B0082;
         margin-top: 1.25rem;
         margin-bottom: 0.75rem;
         padding-left: 0.5rem;
-        border-left: 5px solid #0077b6;
+        border-left: 5px solid #4B0082;
     }
     
     /* Card Styles */
@@ -612,7 +611,7 @@ def apply_custom_styles():
         box-shadow: 0 0.375rem 1rem rgba(0, 0, 0, 0.1);
         margin-bottom: 1rem;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border-top: 4px solid #0077b6;
+        border-top: 4px solid #4B0082;
     }
     
     .card:hover {
@@ -622,8 +621,8 @@ def apply_custom_styles():
     
     /* Stat Box Styles */
     .stat-box {
-        background-color: #e6f4ff;
-        border-left: 5px solid #0077b6;
+        background-color: #f8f4ff;
+        border-left: 5px solid #4B0082;
         padding: 0.75rem;
         margin-bottom: 0.75rem;
         border-radius: 0 0.5rem 0.5rem 0;
@@ -631,11 +630,11 @@ def apply_custom_styles():
     }
     
     .stat-box:hover {
-        background-color: #cce6ff;
+        background-color: #f0e6ff;
     }
     
     .highlight {
-        color: #0077b6;
+        color: #4B0082;
         font-weight: bold;
         font-size: 1.75rem;
     }
@@ -643,7 +642,7 @@ def apply_custom_styles():
     /* Tab Styles */
     .stTabs [data-baseweb="tab-list"] {
         gap: 1.5rem;
-        background-color: #e6f4ff;
+        background-color: #f8f4ff;
         padding: 0.5rem;
         border-radius: 0.625rem 0.625rem 0 0;
         overflow-x: auto;
@@ -654,7 +653,7 @@ def apply_custom_styles():
     .stTabs [data-baseweb="tab"] {
         height: 3rem;
         white-space: pre-wrap;
-        background-color: #e6f4ff;
+        background-color: #F3F4F6;
         border-radius: 0.5rem 0.5rem 0 0;
         padding: 0.5rem 1rem;
         font-weight: 500;
@@ -664,13 +663,13 @@ def apply_custom_styles():
     }
     
     .stTabs [aria-selected="true"] {
-        background-color: #0077b6;
+        background-color: #4B0082;
         color: white;
         box-shadow: 0 -0.25rem 0.625rem rgba(0, 0, 0, 0.1);
     }
     
     .stTabs [data-baseweb="tab"]:hover:not([aria-selected="true"]) {
-        background-color: #b3d9ff;
+        background-color: #e6e0f0;
     }
     
     .stTabs [data-baseweb="tab-panel"] {
@@ -682,7 +681,7 @@ def apply_custom_styles():
     
     /* Form Styles */
     .stButton>button {
-        background-color: #0077b6;
+        background-color: #4B0082;
         color: white;
         border-radius: 0.5rem;
         padding: 0.5rem 1.5rem;
@@ -696,35 +695,35 @@ def apply_custom_styles():
     }
     
     .stButton>button:hover {
-        background-color: #023e8a;
+        background-color: #5c0099;
         box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
         transform: translateY(-2px);
     }
     
     .stTextInput>div>div>input, .stNumberInput>div>div>input, .stSelectbox>div>div>div {
         border-radius: 0.5rem;
-        border: 1px solid #90e0ef;
+        border: 1px solid #d0d0d0;
         padding: 0.625rem 0.75rem;
         font-size: 1rem;
     }
     
     .stTextInput>div>div>input:focus, .stNumberInput>div>div>input:focus {
-        border-color: #0077b6;
-        box-shadow: 0 0 0 2px rgba(0, 119, 182, 0.2);
+        border-color: #4B0082;
+        box-shadow: 0 0 0 2px rgba(75, 0, 130, 0.2);
     }
     
     /* Expander Styles */
     .streamlit-expanderHeader {
-        background-color: #e6f4ff;
+        background-color: #f8f4ff;
         border-radius: 0.5rem;
         padding: 0.625rem 0.9375rem;
         font-weight: 500;
-        color: #0077b6;
-        border: 1px solid #90e0ef;
+        color: #4B0082;
+        border: 1px solid #e0d0ff;
     }
     
     .streamlit-expanderContent {
-        border: 1px solid #90e0ef;
+        border: 1px solid #e0d0ff;
         border-top: none;
         border-radius: 0 0 0.5rem 0.5rem;
         padding: 1.25rem;
@@ -746,7 +745,7 @@ def apply_custom_styles():
     }
     
     .stDataFrame th {
-        background-color: #0077b6;
+        background-color: #4B0082;
         color: white;
         padding: 0.75rem 0.9375rem;
         font-weight: 500;
@@ -758,22 +757,22 @@ def apply_custom_styles():
     
     .stDataFrame td {
         padding: 0.625rem 0.9375rem;
-        border-bottom: 1px solid #e6f4ff;
+        border-bottom: 1px solid #f0f0f0;
         white-space: normal;
         word-break: break-word;
     }
     
     .stDataFrame tr:nth-child(even) {
-        background-color: #e6f4ff;
+        background-color: #f8f4ff;
     }
     
     /* Sidebar Styles */
     .css-1d391kg, .css-12oz5g7 {
-        background-color: #cce6ff;
+        background-color: #f0e6ff;
     }
     
     .sidebar .sidebar-content {
-        background-color: #cce6ff;
+        background-color: #f0e6ff;
     }
     
     /* Alert and Info Styles */
@@ -823,27 +822,27 @@ def apply_custom_styles():
     
     /* Checkbox */
     .stCheckbox>div>div>label {
-        color: #0077b6;
+        color: #4B0082;
     }
     
     /* Radio */
     .stRadio>div>div>label {
-        color: #0077b6;
+        color: #4B0082;
     }
     
     /* Slider */
     .stSlider>div>div>div>div {
-        background-color: #0077b6;
+        background-color: #4B0082;
     }
     
     /* Progress Bar */
     .stProgress>div>div>div>div {
-        background-color: #0077b6;
+        background-color: #4B0082;
     }
     
     /* Subheader */
     h3 {
-        color: #0077b6;
+        color: #4B0082;
         font-weight: 600;
         margin-top: 1.25rem;
         margin-bottom: 0.625rem;
@@ -851,43 +850,43 @@ def apply_custom_styles():
     
     /* Bold text */
     strong {
-        color: #0077b6;
+        color: #4B0082;
     }
 
     /* Chart Styles */
     .stChart > div > div > svg {
-        color: #0077b6 !important;
+        color: #4B0082 !important;
     }
     
     .stChart > div > div > svg g path.highcharts-point {
-        fill: #0077b6 !important;
+        fill: #4B0082 !important;
     }
     
     .stChart > div > div > svg g path.highcharts-graph {
-        stroke: #0077b6 !important;
+        stroke: #4B0082 !important;
     }
     
     .stChart > div > div > svg g rect.highcharts-point {
-        fill: #0077b6 !important;
+        fill: #4B0082 !important;
     }
     
     /* Streamlit's built-in charts */
     .element-container:has(div[data-testid="stChart"]) svg > g > rect {
-        fill: #0077b6 !important;
+        fill: #4B0082 !important;
     }
     
     /* Line charts */
     .element-container:has(div[data-testid="stChart"]) svg > g > path {
-        stroke: #0077b6 !important;
+        stroke: #4B0082 !important;
     }
     
     /* Altair charts */
     .element-container:has(div[data-testid="stChart"]) svg .mark-rect > path {
-        fill: #0077b6 !important;
+        fill: #4B0082 !important;
     }
     
     .element-container:has(div[data-testid="stChart"]) svg .mark-line > path {
-        stroke: #0077b6 !important;
+        stroke: #4B0082 !important;
     }
     
     /* Additional chart elements */
@@ -897,61 +896,49 @@ def apply_custom_styles():
     
     /* Bar chart specific */
     .element-container:has(div[data-testid="stChart"]) svg g > rect.rect {
-        fill: #0077b6 !important;
+        fill: #4B0082 !important;
     }
     
     /* For vega-lite charts */
     .element-container:has(div[data-testid="stVegaLiteChart"]) svg rect.mark-rect {
-        fill: #0077b6 !important;
+        fill: #4B0082 !important;
     }
     
     .element-container:has(div[data-testid="stVegaLiteChart"]) svg path.mark-line {
-        stroke: #0077b6 !important;
+        stroke: #4B0082 !important;
     }
     
     /* Mobile Responsive Styles */
     @media (max-width: 768px) {
         .main {
             padding: 0.5rem;
-            background-color: #e6f4ff;
         }
         
         .main-header {
             font-size: 1.5rem;
-            color: #0077b6;
             margin-bottom: 1rem;
             padding-bottom: 0.5rem;
-            border-bottom: 2px solid #0077b6;
         }
         
         .section-header {
             font-size: 1.25rem;
-            color: #0077b6;
             margin-top: 1rem;
             margin-bottom: 0.5rem;
-            border-left: 4px solid #0077b6;
         }
         
         .card {
             padding: 0.75rem;
             margin-bottom: 0.75rem;
-            border-top: 3px solid #0077b6;
         }
         
         .highlight {
             font-size: 1.5rem;
-            color: #0077b6;
         }
         
         .stTabs [data-baseweb="tab"] {
             padding: 0.375rem 0.75rem;
             height: 2.5rem;
             font-size: 0.875rem;
-            background-color: #cce6ff;
-        }
-        
-        .stTabs [aria-selected="true"] {
-            background-color: #0077b6;
         }
         
         .stTabs [data-baseweb="tab-panel"] {
@@ -961,34 +948,28 @@ def apply_custom_styles():
         .stButton>button {
             padding: 0.5rem 1rem;
             font-size: 0.875rem;
-            background-color: #0077b6;
         }
         
-        .stTextInput>div>div>input, 
-        .stNumberInput>div>div>input, 
-        .stSelectbox>div>div>div {
+        .stTextInput>div>div>input, .stNumberInput>div>div>input, .stSelectbox>div>div>div {
             padding: 0.5rem;
             font-size: 0.875rem;
-            border-color: #90e0ef;
         }
         
-        .stDataFrame th, 
-        .stDataFrame td {
+        .stDataFrame th, .stDataFrame td {
             padding: 0.5rem;
             font-size: 0.875rem;
         }
         
         h3 {
             font-size: 1.25rem;
-            color: #0077b6;
         }
         
-        /* Form layout on mobile */
+        /* Improve form layout on mobile */
         .stForm > div {
             flex-direction: column;
         }
         
-        /* Columns stack on mobile */
+        /* Make columns stack on mobile */
         .row-widget.stHorizontal {
             flex-wrap: wrap;
         }
@@ -999,10 +980,9 @@ def apply_custom_styles():
             margin-bottom: 0.75rem;
         }
         
-        /* Sidebar adjustment */
+        /* Adjust sidebar for mobile */
         .css-1d391kg, .css-12oz5g7 {
             width: 100% !important;
-            background-color: #cce6ff;
         }
     }
     
@@ -1021,7 +1001,7 @@ def apply_custom_styles():
         }
     }
     
-    /* Touch targets on mobile */
+    /* Improve touch targets on mobile */
     @media (pointer: coarse) {
         .stButton>button, 
         .stSelectbox>div>div>div,
@@ -1029,19 +1009,17 @@ def apply_custom_styles():
         .stNumberInput>div>div>input,
         .streamlit-expanderHeader {
             min-height: 2.75rem;
-            background-color: #0077b6;
-            border-color: #90e0ef;
         }
         
         .stCheckbox>div>div>label,
         .stRadio>div>div>label {
             padding: 0.5rem 0;
             display: block;
-            color: #0077b6;
         }
     }
     </style>
     """, unsafe_allow_html=True)
+
 # Apply custom styles
 apply_custom_styles()
 
@@ -1704,13 +1682,14 @@ def instructor_dashboard():
                     
                     with st.form("update_grades_form"):
                         student_options = {student["name"]: student["student_id"] for student in enrolled_students}
-                        selected_student = st.selectbox("Select Student", [student["name"] for student in enrolled_students])
                         selected_student = st.selectbox("Select Student", list(student_options.keys()))
                         student_id = student_options[selected_student]
                         
                         # Get current grade
                         current_grade = None
                         for student in enrolled_students:
+                            if student["student_id"] == student_id:
+                                current_ 
                             if student["student_id"] == student_id:
                                 current_grade = student.get("grade")
                                 break
@@ -2093,3 +2072,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
