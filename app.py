@@ -594,89 +594,80 @@ def truncate_id_for_display(id_str, length=8):
 def apply_custom_styles():
     st.markdown("""
     <style>
-/* Reset and base styles to ensure consistency */
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
+/* Base styles to ensure consistent appearance */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2e1a47;
+    background-color: #ffffff;
 }
 
-/* Global Styles */
+/* Force Streamlit containers to have white background */
 .stApp {
     background-color: #ffffff !important;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
-    color: #2e1a47 !important;
 }
 
 .main {
     background-color: #ffffff !important;
-    padding: 1rem !important;
+    padding: 1rem;
 }
 
-/* Override Streamlit's default styles */
-.css-18e3th9 {
-    background-color: #ffffff !important;
-}
-
-.css-1d391kg, .css-12oz5g7 {
+/* Sidebar styling */
+[data-testid="stSidebar"] {
     background-color: #f0e6ff !important;
+    border-right: 1px solid #d0c0e0;
 }
 
-.css-1wrcr25 {
-    background-color: #ffffff !important;
+.sidebar .sidebar-content {
+    background-color: #f0e6ff !important;
 }
 
 /* Header Styles */
 .main-header {
-    font-size: 2rem !important;
-    font-weight: bold !important;
+    font-size: 2rem;
+    font-weight: bold;
     color: #4B0082 !important;
-    text-align: center !important;
-    margin-bottom: 1.5rem !important;
-    padding-bottom: 0.75rem !important;
-    border-bottom: 3px solid #4B0082 !important;
-    text-shadow: 1px 1px 2px rgba(75, 0, 130, 0.1) !important;
-    background-color: #ffffff !important;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 3px solid #4B0082;
+    background-color: #ffffff;
 }
 
 .section-header {
-    font-size: 1.5rem !important;
-    font-weight: bold !important;
+    font-size: 1.5rem;
+    font-weight: bold;
     color: #4B0082 !important;
-    margin-top: 1.25rem !important;
-    margin-bottom: 0.75rem !important;
-    padding-left: 0.5rem !important;
-    border-left: 5px solid #4B0082 !important;
-    background-color: #ffffff !important;
+    margin-top: 1.25rem;
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+    border-left: 5px solid #4B0082;
+    background-color: #ffffff;
 }
 
 /* Card Styles */
 .card {
     background-color: #ffffff !important;
-    border-radius: 0.75rem !important;
-    padding: 1rem !important;
-    box-shadow: 0 4px 8px rgba(75, 0, 130, 0.15) !important;
-    margin-bottom: 1rem !important;
-    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
-    border-top: 4px solid #4B0082 !important;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(75, 0, 130, 0.15);
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 4px solid #4B0082;
 }
 
 .card:hover {
-    transform: translateY(-5px) !important;
-    box-shadow: 0 6px 12px rgba(75, 0, 130, 0.2) !important;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(75, 0, 130, 0.2);
 }
 
 /* Stat Box Styles */
 .stat-box {
     background-color: #f8f4ff !important;
-    border-left: 5px solid #4B0082 !important;
-    padding: 0.75rem !important;
-    margin-bottom: 0.75rem !important;
-    border-radius: 0 0.5rem 0.5rem 0 !important;
-    transition: background-color 0.3s ease !important;
+    border-left: 5px solid #4B0082;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+    transition: background-color 0.3s ease;
 }
 
 .stat-box:hover {
@@ -685,38 +676,38 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 .highlight {
     color: #4B0082 !important;
-    font-weight: bold !important;
-    font-size: 1.75rem !important;
+    font-weight: bold;
+    font-size: 1.75rem;
 }
 
 /* Tab Styles */
 .stTabs [data-baseweb="tab-list"] {
-    gap: 1.5rem !important;
+    gap: 1.5rem;
     background-color: #f8f4ff !important;
-    padding: 0.5rem !important;
-    border-radius: 0.625rem 0.625rem 0 0 !important;
-    overflow-x: auto !important;
-    flex-wrap: nowrap !important;
-    white-space: nowrap !important;
+    padding: 0.5rem;
+    border-radius: 0.625rem 0.625rem 0 0;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    white-space: nowrap;
 }
 
 .stTabs [data-baseweb="tab"] {
-    height: 3rem !important;
-    white-space: pre-wrap !important;
+    height: 3rem;
+    white-space: pre-wrap;
     background-color: #e6d9ff !important;
-    border-radius: 0.5rem 0.5rem 0 0 !important;
-    padding: 0.5rem 1rem !important;
-    font-weight: 500 !important;
-    transition: all 0.2s ease !important;
-    border: none !important;
-    min-width: fit-content !important;
+    border-radius: 0.5rem 0.5rem 0 0;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: none;
+    min-width: fit-content;
     color: #4B0082 !important;
 }
 
 .stTabs [aria-selected="true"] {
     background-color: #4B0082 !important;
     color: white !important;
-    box-shadow: 0 -0.25rem 0.625rem rgba(75, 0, 130, 0.1) !important;
+    box-shadow: 0 -0.25rem 0.625rem rgba(75, 0, 130, 0.1);
 }
 
 .stTabs [data-baseweb="tab"]:hover:not([aria-selected="true"]) {
@@ -725,42 +716,47 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 .stTabs [data-baseweb="tab-panel"] {
     background-color: white !important;
-    border-radius: 0 0 0.625rem 0.625rem !important;
-    padding: 1rem !important;
-    box-shadow: 0 0.375rem 1rem rgba(75, 0, 130, 0.1) !important;
+    border-radius: 0 0 0.625rem 0.625rem;
+    padding: 1rem;
+    box-shadow: 0 0.375rem 1rem rgba(75, 0, 130, 0.1);
 }
 
 /* Form Styles */
 .stButton>button {
     background-color: #4B0082 !important;
     color: white !important;
-    border-radius: 0.5rem !important;
-    padding: 0.5rem 1.5rem !important;
-    font-weight: 500 !important;
-    border: none !important;
-    transition: all 0.3s ease !important;
-    width: 100% !important;
-    max-width: 300px !important;
-    margin: 0 auto !important;
-    display: block !important;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+    border: none;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    display: block;
 }
 
 .stButton>button:hover {
     background-color: #5c0099 !important;
-    box-shadow: 0 0.25rem 0.5rem rgba(75, 0, 130, 0.2) !important;
-    transform: translateY(-2px) !important;
+    box-shadow: 0 0.25rem 0.5rem rgba(75, 0, 130, 0.2);
+    transform: translateY(-2px);
 }
 
-.stTextInput>div>div>input, .stNumberInput>div>div>input, .stSelectbox>div>div>div {
-    border-radius: 0.5rem !important;
+/* Input fields */
+.stTextInput>div>div>input, 
+.stNumberInput>div>div>input, 
+.stSelectbox>div>div>div,
+.stMultiSelect>div>div>div {
+    border-radius: 0.5rem;
     border: 1px solid #d0c0e0 !important;
-    padding: 0.625rem 0.75rem !important;
-    font-size: 1rem !important;
+    padding: 0.625rem 0.75rem;
+    font-size: 1rem;
     background-color: #ffffff !important;
     color: #2e1a47 !important;
 }
 
-.stTextInput>div>div>input:focus, .stNumberInput>div>div>input:focus {
+.stTextInput>div>div>input:focus, 
+.stNumberInput>div>div>input:focus {
     border-color: #4B0082 !important;
     box-shadow: 0 0 0 2px rgba(75, 0, 130, 0.2) !important;
 }
@@ -768,52 +764,52 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 /* Expander Styles */
 .streamlit-expanderHeader {
     background-color: #f8f4ff !important;
-    border-radius: 0.5rem !important;
-    padding: 0.625rem 0.9375rem !important;
-    font-weight: 500 !important;
+    border-radius: 0.5rem;
+    padding: 0.625rem 0.9375rem;
+    font-weight: 500;
     color: #4B0082 !important;
-    border: 1px solid #e0d0ff !important;
+    border: 1px solid #e0d0ff;
 }
 
 .streamlit-expanderContent {
-    border: 1px solid #e0d0ff !important;
-    border-top: none !important;
-    border-radius: 0 0 0.5rem 0.5rem !important;
-    padding: 1.25rem !important;
+    border: 1px solid #e0d0ff;
+    border-top: none;
+    border-radius: 0 0 0.5rem 0.5rem;
+    padding: 1.25rem;
     background-color: #ffffff !important;
 }
 
 /* Table Styles */
 .stDataFrame {
-    border-radius: 0.625rem !important;
-    overflow: hidden !important;
-    box-shadow: 0 0.25rem 0.75rem rgba(75, 0, 130, 0.08) !important;
-    width: 100% !important;
-    overflow-x: auto !important;
+    border-radius: 0.625rem;
+    overflow: hidden;
+    box-shadow: 0 0.25rem 0.75rem rgba(75, 0, 130, 0.08);
+    width: 100%;
+    overflow-x: auto;
 }
 
 .stDataFrame table {
-    border-collapse: separate !important;
-    border-spacing: 0 !important;
-    width: 100% !important;
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
 }
 
 .stDataFrame th {
     background-color: #4B0082 !important;
     color: white !important;
-    padding: 0.75rem 0.9375rem !important;
-    font-weight: 500 !important;
-    white-space: nowrap !important;
-    position: sticky !important;
-    top: 0 !important;
-    z-index: 1 !important;
+    padding: 0.75rem 0.9375rem;
+    font-weight: 500;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .stDataFrame td {
-    padding: 0.625rem 0.9375rem !important;
-    border-bottom: 1px solid #f0e6ff !important;
-    white-space: normal !important;
-    word-break: break-word !important;
+    padding: 0.625rem 0.9375rem;
+    border-bottom: 1px solid #f0e6ff;
+    white-space: normal;
+    word-break: break-word;
     color: #2e1a47 !important;
     background-color: #ffffff !important;
 }
@@ -822,58 +818,43 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     background-color: #f8f4ff !important;
 }
 
-/* Sidebar Styles */
-.css-1d391kg, .css-12oz5g7 {
-    background-color: #f0e6ff !important;
-}
-
-.sidebar .sidebar-content {
-    background-color: #f0e6ff !important;
-}
-
 /* Alert and Info Styles */
 .stAlert {
-    border-radius: 0.5rem !important;
-    padding: 0.9375rem !important;
-    margin-bottom: 1.25rem !important;
+    border-radius: 0.5rem;
+    padding: 0.9375rem;
+    margin-bottom: 1.25rem;
 }
 
 .stAlert>div {
-    padding: 0.9375rem !important;
-    border-radius: 0.5rem !important;
+    padding: 0.9375rem;
+    border-radius: 0.5rem;
 }
 
 /* Success Message */
 .element-container:has(div[data-testid="stText"] div[class*="success"]) {
     background-color: #e6ffea !important;
-    padding: 0.9375rem !important;
-    border-radius: 0.5rem !important;
-    border-left: 5px solid #00cc66 !important;
-    margin-bottom: 1.25rem !important;
+    padding: 0.9375rem;
+    border-radius: 0.5rem;
+    border-left: 5px solid #00cc66;
+    margin-bottom: 1.25rem;
 }
 
 /* Error Message */
 .element-container:has(div[data-testid="stText"] div[class*="error"]) {
     background-color: #ffe6e6 !important;
-    padding: 0.9375rem !important;
-    border-radius: 0.5rem !important;
-    border-left: 5px solid #ff3333 !important;
-    margin-bottom: 1.25rem !important;
+    padding: 0.9375rem;
+    border-radius: 0.5rem;
+    border-left: 5px solid #ff3333;
+    margin-bottom: 1.25rem;
 }
 
 /* Info Message */
 .element-container:has(div[data-testid="stText"] div[class*="info"]) {
     background-color: #e6f2ff !important;
-    padding: 0.9375rem !important;
-    border-radius: 0.5rem !important;
-    border-left: 5px solid #3399ff !important;
-    margin-bottom: 1.25rem !important;
-}
-
-/* Multiselect */
-.stMultiSelect>div>div>div {
-    background-color: white !important;
-    border-radius: 0.5rem !important;
+    padding: 0.9375rem;
+    border-radius: 0.5rem;
+    border-left: 5px solid #3399ff;
+    margin-bottom: 1.25rem;
 }
 
 /* Checkbox */
@@ -899,9 +880,9 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 /* Subheader */
 h3 {
     color: #4B0082 !important;
-    font-weight: 600 !important;
-    margin-top: 1.25rem !important;
-    margin-bottom: 0.625rem !important;
+    font-weight: 600;
+    margin-top: 1.25rem;
+    margin-bottom: 0.625rem;
 }
 
 /* Bold text */
@@ -964,177 +945,120 @@ strong {
     stroke: #4B0082 !important;
 }
 
-/* Mobile Responsive Styles - Enhanced for Android */
+/* Mobile Responsive Styles */
 @media (max-width: 768px) {
     .main {
-        padding: 0.5rem !important;
-        background-color: #ffffff !important;
+        padding: 0.5rem;
     }
     
     .main-header {
-        font-size: 1.5rem !important;
-        margin-bottom: 1rem !important;
-        padding-bottom: 0.5rem !important;
-        color: #4B0082 !important;
-        background-color: #ffffff !important;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
     }
     
     .section-header {
-        font-size: 1.25rem !important;
-        margin-top: 1rem !important;
-        margin-bottom: 0.5rem !important;
-        color: #4B0082 !important;
-        background-color: #ffffff !important;
+        font-size: 1.25rem;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
     }
     
     .card {
-        padding: 0.75rem !important;
-        margin-bottom: 0.75rem !important;
-        background-color: #ffffff !important;
-        box-shadow: 0 3px 6px rgba(75, 0, 130, 0.15) !important;
+        padding: 0.75rem;
+        margin-bottom: 0.75rem;
     }
     
     .highlight {
-        font-size: 1.5rem !important;
-        color: #4B0082 !important;
+        font-size: 1.5rem;
     }
     
     .stTabs [data-baseweb="tab"] {
-        padding: 0.375rem 0.75rem !important;
-        height: 2.5rem !important;
-        font-size: 0.875rem !important;
-        background-color: #e6d9ff !important;
-        color: #4B0082 !important;
+        padding: 0.375rem 0.75rem;
+        height: 2.5rem;
+        font-size: 0.875rem;
     }
     
     .stTabs [data-baseweb="tab-panel"] {
-        padding: 0.75rem !important;
-        background-color: #ffffff !important;
+        padding: 0.75rem;
     }
     
     .stButton>button {
-        padding: 0.75rem 1rem !important;
-        font-size: 0.875rem !important;
-        background-color: #4B0082 !important;
-        color: white !important;
+        padding: 0.75rem 1rem;
+        font-size: 0.875rem;
     }
     
-    .stTextInput>div>div>input, .stNumberInput>div>div>input, .stSelectbox>div>div>div {
-        padding: 0.5rem !important;
-        font-size: 0.875rem !important;
-        border-color: #d0c0e0 !important;
-        background-color: #ffffff !important;
-        color: #2e1a47 !important;
+    .stTextInput>div>div>input, 
+    .stNumberInput>div>div>input, 
+    .stSelectbox>div>div>div {
+        padding: 0.5rem;
+        font-size: 0.875rem;
     }
     
     .stDataFrame th, .stDataFrame td {
-        padding: 0.5rem !important;
-        font-size: 0.875rem !important;
-    }
-    
-    .stDataFrame th {
-        background-color: #4B0082 !important;
-        color: white !important;
-    }
-    
-    .stDataFrame td {
-        color: #2e1a47 !important;
-        background-color: #ffffff !important;
-    }
-    
-    .stDataFrame tr:nth-child(even) td {
-        background-color: #f8f4ff !important;
+        padding: 0.5rem;
+        font-size: 0.875rem;
     }
     
     h3 {
-        font-size: 1.25rem !important;
-        color: #4B0082 !important;
+        font-size: 1.25rem;
     }
     
     /* Improve form layout on mobile */
     .stForm > div {
-        flex-direction: column !important;
+        flex-direction: column;
     }
     
     /* Make columns stack on mobile */
     .row-widget.stHorizontal {
-        flex-wrap: wrap !important;
+        flex-wrap: wrap;
     }
     
     .row-widget.stHorizontal > div {
-        flex: 1 1 100% !important;
-        min-width: 100% !important;
-        margin-bottom: 0.75rem !important;
-    }
-    
-    /* Adjust sidebar for mobile */
-    .css-1d391kg, .css-12oz5g7 {
-        width: 100% !important;
-        background-color: #f0e6ff !important;
+        flex: 1 1 100%;
+        min-width: 100%;
+        margin-bottom: 0.75rem;
     }
     
     /* Improve table display on mobile */
     .stDataFrame {
-        font-size: 0.75rem !important;
+        font-size: 0.75rem;
     }
     
     .stDataFrame table {
-        table-layout: fixed !important;
+        table-layout: fixed;
     }
     
     /* Hide or truncate long IDs on mobile */
     .stDataFrame td:nth-child(1) {
-        max-width: 80px !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-        white-space: nowrap !important;
+        max-width: 80px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
     
     /* Make sure buttons are properly sized on mobile */
     .stButton>button {
-        width: 100% !important;
-        max-width: none !important;
-        padding: 0.75rem 0.5rem !important;
-        margin-top: 0.5rem !important;
-        margin-bottom: 0.5rem !important;
+        width: 100%;
+        max-width: none;
+        padding: 0.75rem 0.5rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
     }
     
     /* Improve form layout on small screens */
     .stForm {
-        padding: 0.5rem !important;
+        padding: 0.5rem;
     }
     
     /* Adjust card padding for mobile */
     .card {
-        padding: 0.75rem !important;
+        padding: 0.75rem;
     }
     
     /* Make tabs more touch-friendly */
     .stTabs [data-baseweb="tab"] {
-        min-width: 80px !important;
-        padding: 0.5rem !important;
-    }
-    
-    /* Improve sidebar on mobile */
-    .css-1d391kg, .css-12oz5g7 {
-        padding: 1rem 0.5rem !important;
-    }
-}
-
-/* Tablet Responsive Styles */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .main-header {
-        font-size: 1.75rem !important;
-    }
-    
-    .card {
-        padding: 0.875rem !important;
-        background-color: #ffffff !important;
-    }
-    
-    .stTabs [data-baseweb="tab"] {
-        padding: 0.5rem 1rem !important;
-        background-color: #e6d9ff !important;
+        min-width: 80px;
+        padding: 0.5rem;
     }
 }
 
@@ -1145,158 +1069,24 @@ strong {
     .stTextInput>div>div>input,
     .stNumberInput>div>div>input,
     .streamlit-expanderHeader {
-        min-height: 2.75rem !important;
+        min-height: 2.75rem;
     }
     
     .stCheckbox>div>div>label,
     .stRadio>div>div>label {
-        padding: 0.5rem 0 !important;
-        display: block !important;
+        padding: 0.5rem 0;
+        display: block;
     }
 }
 
-/* Android-specific optimizations */
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-    /* Android Chrome specific styles */
-    .stButton>button {
-        background-color: #4B0082 !important;
-        color: #ffffff !important;
-    }
-    
-    .stTabs [aria-selected="true"] {
-        background-color: #4B0082 !important;
-        color: #ffffff !important;
-    }
-    
-    .stDataFrame th {
-        background-color: #4B0082 !important;
-        color: #ffffff !important;
-    }
-    
-    /* Fix for Android text rendering */
-    body, input, button, select, textarea {
-        -webkit-text-size-adjust: 100% !important;
-    }
-    
-    /* Improve contrast for Android */
-    .card, .stDataFrame td, .streamlit-expanderContent {
-        background-color: #ffffff !important;
-    }
-    
-    .stDataFrame tr:nth-child(even) td {
-        background-color: #f8f4ff !important;
-    }
-    
-    /* Fix for Android shadow rendering */
-    .card {
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
-    }
-}
-
-/* Small screen Android phones */
-@media screen and (max-width: 360px) {
-    .main-header {
-        font-size: 1.25rem !important;
-    }
-    
-    .section-header {
-        font-size: 1.1rem !important;
-    }
-    
-    .card {
-        padding: 0.5rem !important;
-    }
-    
-    .stDataFrame th, .stDataFrame td {
-        padding: 0.25rem !important;
-        font-size: 0.7rem !important;
-    }
-    
-    .stButton>button {
-        padding: 0.5rem !important;
-        font-size: 0.8rem !important;
-    }
-}
-
-/* Force color application for problematic browsers */
-.stTabs [data-baseweb="tab"] {
-    color: #4B0082 !important;
-}
-
-.stTabs [aria-selected="true"] {
-    color: #ffffff !important;
-}
-
+/* Fix for dark text on dark buttons */
 .stButton>button {
     color: #ffffff !important;
     background-color: #4B0082 !important;
-}
-
-.stDataFrame th {
-    color: #ffffff !important;
-    background-color: #4B0082 !important;
-}
-
-/* Ensure text is visible on all backgrounds */
-.stDataFrame td, .stTextInput>div>div>input, .stNumberInput>div>div>input, .stSelectbox>div>div>div {
-    color: #2e1a47 !important;
-}
-
-/* Ensure backgrounds are properly set */
-.main {
-    background-color: #ffffff !important;
-}
-
-.card, .streamlit-expanderContent, .stDataFrame td {
-    background-color: #ffffff !important;
-}
-
-.stDataFrame tr:nth-child(even) td {
-    background-color: #f8f4ff !important;
-}
-
-/* Override Streamlit's default dark mode */
-@media (prefers-color-scheme: dark) {
-    .stApp, .main, .css-18e3th9, .css-1wrcr25 {
-        background-color: #ffffff !important;
-    }
-    
-    .stDataFrame td {
-        background-color: #ffffff !important;
-    }
-    
-    .stDataFrame tr:nth-child(even) td {
-        background-color: #f8f4ff !important;
-    }
-    
-    .card, .streamlit-expanderContent {
-        background-color: #ffffff !important;
-    }
-    
-    .stTextInput>div>div>input, .stNumberInput>div>div>input, .stSelectbox>div>div>div {
-        background-color: #ffffff !important;
-        color: #2e1a47 !important;
-    }
+    border: none !important;
 }
 
 /* Fix for Streamlit's container backgrounds */
-.block-container {
-    background-color: #ffffff !important;
-}
-
-.css-1544g2n {
-    background-color: #ffffff !important;
-}
-
-.css-k1vhr4 {
-    background-color: #f0e6ff !important;
-}
-
-.css-1avcm0n {
-    background-color: #ffffff !important;
-}
-
-/* Fix for Streamlit's dark mode toggle */
 [data-testid="stAppViewContainer"] {
     background-color: #ffffff !important;
 }
@@ -1313,17 +1103,71 @@ strong {
     background-color: #f0e6ff !important;
 }
 
-/* Additional fixes for mobile */
-@media (max-width: 768px) {
-    [data-testid="stAppViewContainer"] {
+.block-container {
+    background-color: #ffffff !important;
+}
+
+/* Fix for Streamlit's dark mode */
+@media (prefers-color-scheme: dark) {
+    .stApp, .main, body, html {
+        background-color: #ffffff !important;
+        color: #2e1a47 !important;
+    }
+    
+    [data-testid="stSidebar"] {
+        background-color: #f0e6ff !important;
+    }
+    
+    .stTextInput>div>div>input, 
+    .stNumberInput>div>div>input, 
+    .stSelectbox>div>div>div {
+        background-color: #ffffff !important;
+        color: #2e1a47 !important;
+        border-color: #d0c0e0 !important;
+    }
+    
+    .stDataFrame td {
+        background-color: #ffffff !important;
+        color: #2e1a47 !important;
+    }
+    
+    .stDataFrame tr:nth-child(even) td {
+        background-color: #f8f4ff !important;
+    }
+    
+    .stDataFrame th {
+        background-color: #4B0082 !important;
+        color: #ffffff !important;
+    }
+    
+    .stButton>button {
+        background-color: #4B0082 !important;
+        color: #ffffff !important;
+    }
+    
+    .streamlit-expanderHeader {
+        background-color: #f8f4ff !important;
+        color: #4B0082 !important;
+    }
+    
+    .streamlit-expanderContent {
         background-color: #ffffff !important;
     }
     
-    [data-testid="stHeader"] {
-        background-color: #ffffff !important;
+    .stTabs [data-baseweb="tab"] {
+        background-color: #e6d9ff !important;
+        color: #4B0082 !important;
     }
     
-    [data-testid="stToolbar"] {
+    .stTabs [aria-selected="true"] {
+        background-color: #4B0082 !important;
+        color: #ffffff !important;
+    }
+}
+
+/* Additional fixes for Android */
+@supports (-webkit-appearance:none) {
+    body, html, .stApp, .main, [data-testid="stAppViewContainer"] {
         background-color: #ffffff !important;
     }
     
@@ -1331,13 +1175,62 @@ strong {
         background-color: #f0e6ff !important;
     }
     
-    .block-container {
-        background-color: #ffffff !important;
+    .stButton>button {
+        background-color: #4B0082 !important;
+        color: #ffffff !important;
+        border: none !important;
     }
     
-    .css-1544g2n {
+    .stTextInput>div>div>input, 
+    .stNumberInput>div>div>input, 
+    .stSelectbox>div>div>div {
         background-color: #ffffff !important;
+        color: #2e1a47 !important;
+        border-color: #d0c0e0 !important;
     }
+    
+    .stDataFrame td {
+        background-color: #ffffff !important;
+        color: #2e1a47 !important;
+    }
+    
+    .stDataFrame tr:nth-child(even) td {
+        background-color: #f8f4ff !important;
+    }
+    
+    .stDataFrame th {
+        background-color: #4B0082 !important;
+        color: #ffffff !important;
+    }
+}
+
+/* Force white background on all elements */
+div, section, header, footer, main, aside, nav {
+    background-color: inherit;
+}
+
+/* Fix for login/signup forms */
+form {
+    background-color: #ffffff !important;
+}
+
+/* Fix for form labels */
+label {
+    color: #2e1a47 !important;
+}
+
+/* Fix for form inputs */
+input, select, textarea {
+    background-color: #ffffff !important;
+    color: #2e1a47 !important;
+    border-color: #d0c0e0 !important;
+}
+
+/* Fix for buttons */
+button {
+    background-color: #4B0082 !important;
+    color: #ffffff !important;
+    border: none !important;
 }
 </style>
     """, unsafe_allow_html=True)
@@ -1354,6 +1247,32 @@ def is_mobile():
     } else {
         document.documentElement.classList.remove('mobile');
     }
+    
+    // Force white background and proper colors
+    document.addEventListener('DOMContentLoaded', function() {
+        document.body.style.backgroundColor = '#ffffff';
+        document.body.style.color = '#2e1a47';
+        
+        // Force white background on all containers
+        const containers = document.querySelectorAll('.stApp, .main, [data-testid="stAppViewContainer"], .block-container');
+        containers.forEach(container => {
+            container.style.backgroundColor = '#ffffff';
+        });
+        
+        // Force sidebar color
+        const sidebar = document.querySelector('[data-testid="stSidebar"]');
+        if (sidebar) {
+            sidebar.style.backgroundColor = '#f0e6ff';
+        }
+        
+        // Force button colors
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(button => {
+            button.style.backgroundColor = '#4B0082';
+            button.style.color = '#ffffff';
+            button.style.border = 'none';
+        });
+    });
     </script>
     """
     st.markdown(mobile_detector, unsafe_allow_html=True)
@@ -1386,11 +1305,11 @@ def create_mobile_friendly_cards(data_list, title_field, fields_to_display):
         
     for item in data_list:
         st.markdown(f"<div class='card'>", unsafe_allow_html=True)
-        st.markdown(f"<h4>{item.get(title_field, 'Item')}</h4>", unsafe_allow_html=True)
+        st.markdown(f"<h4 style='color: #4B0082; font-weight: bold;'>{item.get(title_field, 'Item')}</h4>", unsafe_allow_html=True)
         
         for field, label in fields_to_display.items():
             value = item.get(field, "N/A")
-            st.markdown(f"<p><strong>{label}:</strong> {value}</p>", unsafe_allow_html=True)
+            st.markdown(f"<p><strong style='color: #4B0082;'>{label}:</strong> <span style='color: #2e1a47;'>{value}</span></p>", unsafe_allow_html=True)
             
         st.markdown("</div>", unsafe_allow_html=True)
 
